@@ -3,46 +3,144 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>산업계도움센터 최근 공지사항</title>
+<title>화평법 물질 등록 조회</title>
+<meta name="description" content="CAS 번호나 KE 번호로 화평법 등록 구분과 문의처를 확인합니다.">
 <style>
-:root{color-scheme:light dark;--bg:light-dark(#f5f8fb,#111820);--surface:light-dark(#fff,#19232d);--surface2:light-dark(#f8fafc,#202c38);--text:light-dark(#17212b,#edf3f8);--muted:light-dark(#667584,#aebdca);--line:light-dark(#dce4eb,#33424f);--brand:#1f497d;--accent:light-dark(#eaf2fb,#213d5b)}
-*{box-sizing:border-box}body{margin:0;font-family:"Malgun Gothic","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text)}
-#app{min-height:100vh;background-color:var(--bg)}
-.header{background:linear-gradient(135deg,#173a63,#285c91);color:#fff;padding:34px 24px 30px}.header-inner{max-width:1080px;margin:auto}.eyebrow{font-size:13px;opacity:.78;margin-bottom:9px}.header h1{margin:0;font-size:28px;letter-spacing:-.8px}.header p{margin:10px 0 0;opacity:.88;font-size:14px}
-.container{max-width:1080px;margin:0 auto;padding:24px}.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.count{font-size:14px;color:var(--muted)}.badge{display:inline-flex;align-items:center;padding:7px 11px;border-radius:999px;background:var(--accent);color:var(--brand);font-size:12px;font-weight:700}
-.list{display:grid;gap:10px}.item{width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:18px 20px;cursor:pointer;transition:.16s transform,.16s box-shadow,.16s border-color}.item:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(25,55,80,.09);border-color:#9db6ce}.item-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.title{font-size:16px;font-weight:700;line-height:1.55;letter-spacing:-.25px}.date{white-space:nowrap;color:var(--muted);font-size:13px}.meta{display:flex;gap:9px;margin-top:9px;color:var(--muted);font-size:12px}.new{color:#c43d3d;font-weight:700}
-.note{margin-top:20px;padding:15px 17px;border-radius:12px;background:var(--surface2);border:1px solid var(--line);font-size:13px;line-height:1.65;color:var(--muted)}
-.modal-backdrop{position:fixed;inset:0;background:rgba(8,18,28,.58);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal-backdrop.open{display:flex}.modal{width:min(760px,100%);max-height:88vh;overflow:auto;background:var(--surface);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.28)}.modal-head{padding:23px 24px 18px;border-bottom:1px solid var(--line)}.modal-title{font-size:20px;font-weight:800;line-height:1.5;margin:0}.modal-meta{margin-top:10px;color:var(--muted);font-size:13px}.modal-body{padding:24px;line-height:1.8;font-size:14px}.modal-body .summary{padding:15px 16px;border-radius:11px;background:var(--surface2);border:1px solid var(--line);margin-bottom:20px}.actions{display:flex;gap:9px;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:11px 15px;text-decoration:none;font-weight:700;font-size:13px;cursor:pointer}.primary{background:#1f497d;color:#fff}.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--line)}.close{margin-left:auto;background:transparent;border:0;color:var(--muted);font-size:22px;cursor:pointer}.modal-head-row{display:flex;gap:12px;align-items:flex-start}
-@media(max-width:640px){.header{padding:26px 18px}.header h1{font-size:23px}.container{padding:18px}.item{padding:16px}.item-top{display:block}.date{display:block;margin-top:7px}.bar{align-items:flex-start;flex-direction:column}.modal-body,.modal-head{padding:19px}}
+:root{color-scheme:light dark;--bg:light-dark(#f7f9fc,#10161d);--surface:light-dark(#fff,#18212b);--surface2:light-dark(#f1f5f9,#1f2a36);--text:light-dark(#17212b,#edf3f8);--muted:light-dark(#5f6f7e,#a9b8c6);--line:light-dark(#d9e2ea,#33424f);--brand:light-dark(#1f497d,#8fb8e8);--brand-strong:#1f497d;--ok-bg:light-dark(#e8f5ee,#16322a);--ok:light-dark(#17693f,#7fd3a6);--warn-bg:light-dark(#fff6e5,#3a2e14);--warn:light-dark(#8a5a00,#f1c46b);--focus:light-dark(#2f6db3,#8fb8e8)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:"Pretendard","Malgun Gothic","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--brand)}
+main{flex:1;width:100%;max-width:720px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column}
+.hero{padding-top:22vh;transition:padding-top .25s ease;text-align:center}
+body.has-result .hero{padding-top:48px}
+.eyebrow{font-size:13px;color:var(--muted);letter-spacing:.2px;margin-bottom:12px}
+h1{margin:0 0 28px;font-size:clamp(26px,5vw,36px);letter-spacing:-1px;font-weight:700}
+body.has-result h1{font-size:24px;margin-bottom:20px}
+form{display:flex;gap:8px;align-items:stretch}
+.box{flex:1;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:0 20px;box-shadow:0 2px 10px rgba(20,45,70,.06);transition:box-shadow .15s,border-color .15s}
+.box:focus-within{border-color:var(--focus);box-shadow:0 4px 18px rgba(31,73,125,.16)}
+.box svg{flex:none;color:var(--muted)}
+input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:17px;padding:15px 0}
+button.go{border:0;border-radius:999px;background:var(--brand-strong);color:#fff;font:inherit;font-size:15px;font-weight:700;padding:0 24px;cursor:pointer}
+button.go:hover{filter:brightness(1.12)}
+input:focus-visible{outline:0}button.go:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.hint{margin-top:14px;font-size:13px;color:var(--muted)}
+.hint button{border:0;background:none;color:var(--brand);font:inherit;cursor:pointer;padding:0 2px;text-decoration:underline;text-underline-offset:2px}
+#result{margin:28px 0 40px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:14px}
+.status{display:flex;align-items:center;gap:10px;padding:16px 22px;font-weight:700;font-size:16px}
+.status.late{background:var(--ok-bg);color:var(--ok)}
+.status.none{background:var(--warn-bg);color:var(--warn)}
+.status .dot{width:10px;height:10px;border-radius:50%;background:currentColor;flex:none}
+.body{padding:20px 22px 22px}
+.name{font-size:18px;font-weight:700;line-height:1.4;word-break:break-word;margin:0 0 12px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;font-size:14px}
+dt{color:var(--muted)}dd{margin:0;word-break:break-all}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface2);color:var(--brand);margin-right:6px}
+.next{margin-top:18px;padding:16px 18px;border-radius:14px;background:var(--surface2);font-size:14px;line-height:1.7}
+.next strong{display:block;font-size:15px;margin-bottom:4px}
+.contact{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:10px}
+.tel{display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:700;text-decoration:none;background:var(--surface);border:1px solid var(--line);padding:9px 16px;border-radius:12px}
+.org{font-size:14px;color:var(--muted)}
+.list-head{font-size:14px;color:var(--muted);margin:0 0 10px}
+.pick{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:8px;cursor:pointer;color:var(--text);font:inherit}
+.pick:hover{border-color:var(--focus)}
+.pick small{display:block;color:var(--muted);margin-top:3px}
+.msg{font-size:14px;line-height:1.7;color:var(--muted)}
+footer{padding:22px 16px 28px;text-align:center;font-size:13px;color:var(--muted);line-height:1.8}
+footer nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:6px}
+footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
+@media(max-width:560px){.hero{padding-top:14vh}form{flex-direction:column}button.go{padding:14px}input{font-size:16px}dl{grid-template-columns:1fr;gap:2px}dd{margin-bottom:8px}}
 </style>
 </head>
 <body>
-<div id="app">
-<header class="header"><div class="header-inner"><div class="eyebrow">산업계도움센터 · 안내 및 상담 · 공지사항</div><h1>최근 1개월 공지사항</h1><p>산업계도움센터 공지사항에서 최근 등록된 내용을 한눈에 확인할 수 있습니다.</p></div></header>
-<main class="container">
-<div class="bar"><div><span class="badge">최근 1개월</span> <span class="count">2026.08.31 ~ 2026.09.29 기준</span></div><div class="count">총 9건</div></div>
-<section class="list" id="list"></section>
-<div class="note">※ 목록과 등록일은 산업계도움센터 공지사항 페이지를 기준으로 2026년 9월 29일 확인한 내용입니다. 항목을 클릭하면 상세 내용을 볼 수 있으며, 원문은 산업계도움센터에서 열 수 있습니다.</div>
+<main>
+  <section class="hero">
+    <div class="eyebrow">화학물질의 등록 및 평가 등에 관한 법률(화평법)</div>
+    <h1>어떤 물질에 관심이 있나요?</h1>
+    <form id="f" role="search" autocomplete="off">
+      <label class="box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="CAS 번호 또는 KE 번호 (예: 13463-41-7, KE-35577)" aria-label="CAS 번호 또는 KE 번호" autofocus>
+      </label>
+      <button class="go" type="submit">검색</button>
+    </form>
+    <div class="hint" id="hint">예시: <button type="button" data-q="13463-41-7">13463-41-7</button> · <button type="button" data-q="KE-35630">KE-35630</button> · 영문 물질명 일부로도 찾을 수 있습니다.</div>
+  </section>
+  <section id="result" aria-live="polite"></section>
 </main>
-<div class="modal-backdrop" id="backdrop"><article class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div class="modal-head-row"><div style="flex:1"><h2 class="modal-title" id="mTitle"></h2><div class="modal-meta" id="mMeta"></div></div><button class="close" id="close" aria-label="닫기">×</button></div></div><div class="modal-body" id="mBody"></div></article></div>
-</div>
+<footer>
+  <nav><a href="notices.html">산업계도움센터 최근 공지사항</a><a href="https://www.chemnavi.or.kr" target="_blank" rel="noopener">산업계도움센터 바로가기</a></nav>
+  <div id="asof"></div>
+</footer>
+<script src="data/substances.js"></script>
 <script>
-const notices=[
-{title:'2026년 화학물질 유해성시험자료 신규 및 기존화학물질 수요조사 안내',date:'2026-09-21',views:305,summary:'2026년 화학물질 유해성시험자료와 관련한 신규 및 기존화학물질 수요조사 안내 공지입니다. 세부 조사내용과 제출 방법은 원문 및 첨부자료에서 확인할 수 있습니다.'},
-{title:'등록정보공개 및 자료보호 특례요청 안내',date:'2026-09-21',views:344,summary:'화학물질 등록정보 공개와 자료보호 특례요청에 관한 안내입니다. 적용 대상과 요청 절차 등 세부 사항은 원문에서 확인할 수 있습니다.'},
-{title:'[2026년 화학물질 제도 이행 및 산업계 지원 권역별 설명회] 개최 안내',date:'2026-09-18',views:662,summary:'2026년 화학물질 제도 이행 및 산업계 지원을 위한 권역별 설명회 개최 안내입니다. 일정과 장소, 참여 방법 등은 원문을 확인해 주세요.'},
-{title:'[2026년 산업계 대상 화평법 이행 교육 안내(10월)]',date:'2026-09-18',views:510,summary:'2026년 10월 산업계 대상 화평법 이행 교육 안내입니다. 교육 일정과 신청 관련 세부사항은 원문 및 첨부자료에서 확인할 수 있습니다.'},
-{title:'「동물대체시험 인프라 구축 관련 설문조사」 참여 안내',date:'2026-09-10',views:280,summary:'동물대체시험 인프라 구축과 관련한 설문조사 참여 안내입니다. 설문 목적과 참여 방법은 원문에서 확인할 수 있습니다.'},
-{title:'(신청마감) 화학물질 등록 이행 촉진을 위한 화학물질 업종별 간담회 개최 안내',date:'2026-09-09',views:764,summary:'화학물질 등록 이행 촉진을 위한 업종별 간담회 개최 안내입니다. 제목에 표시된 것처럼 신청이 마감된 공지입니다.'},
-{title:'산업계도움센터 서버 작업으로 인한 시스템 중단 안내(9.9.(수))',date:'2026-09-07',views:143,summary:'산업계도움센터 서버 작업에 따른 시스템 중단 안내입니다.'},
-{title:'「GLP 기반 동물대체법 시범 교육훈련」 개최 안내',date:'2026-09-02',views:288,summary:'GLP 기반 동물대체법 시범 교육훈련 개최 안내입니다. 교육 일정과 참가 관련 내용은 원문에서 확인할 수 있습니다.'},
-{title:'「산업계 녹색화학 실천 우수사례」 공모전 개최 안내',date:'2026-08-31',views:207,summary:'산업계 녹색화학 실천 우수사례 공모전 개최 안내입니다. 공모 내용과 신청 방법 등은 원문에서 확인할 수 있습니다.'}
-];
-const original='https://www.chemnavi.or.kr/chemnavi/spboard/notice.do';
-const list=document.getElementById('list');
-notices.forEach((n,i)=>{const b=document.createElement('button');b.className='item';b.innerHTML=`<div class="item-top"><div class="title">${n.title}</div><div class="date">${n.date}</div></div><div class="meta"><span>관리자</span><span>·</span><span>조회 ${n.views}</span>${i<4?'<span class="new">· NEW</span>':''}</div>`;b.onclick=()=>openModal(n);list.appendChild(b)});
-function openModal(n){document.getElementById('mTitle').textContent=n.title;document.getElementById('mMeta').textContent=`작성자 관리자 · 등록일 ${n.date} · 조회 ${n.views}`;document.getElementById('mBody').innerHTML=`<div class="summary">${n.summary}</div><div>이 페이지는 산업계도움센터의 최근 공지사항을 별도로 모아 보여주는 화면입니다. 최신 공지의 정확한 본문, 첨부파일 및 원문 형식은 아래 원문 보기에서 확인할 수 있습니다.</div><div class="actions"><a class="btn primary" href="${original}" target="_blank" rel="noopener">산업계도움센터 원문 보기 ↗</a><button class="btn secondary" onclick="closeModal()">닫기</button></div>`;document.getElementById('backdrop').classList.add('open')}
-function closeModal(){document.getElementById('backdrop').classList.remove('open')}
-document.getElementById('close').onclick=closeModal;document.getElementById('backdrop').addEventListener('click',e=>{if(e.target.id==='backdrop')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+const DATA = window.SUBSTANCE_DATA || {items:[],asof:''};
+// 등록 구분. 지금 목록은 모두 공동등록이 완료된 물질이므로 'late'(후발등록 대상)입니다.
+const STATUS = {
+  late: {label:'공동등록 완료 · 후발등록 대상', cls:'late',
+    next:'이미 공동등록이 완료된 물질입니다. 이 물질을 제조·수입하려면 기존 공동등록에 참여하는 <b>후발등록</b>을 진행해야 합니다. 아래 문의처로 연락해 참여 절차와 자료 사용 조건을 확인하세요.'}
+};
+const $ = id => document.getElementById(id);
+const key = s => String(s||'').toUpperCase().replace(/[^0-9A-Z]/g,'');
+const casKey = s => key(s).replace(/^0+/,'');
+const esc = s => String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function casValid(s){const d=s.replace(/-/g,'');if(!/^\d{2,7}-\d{2}-\d$/.test(s))return false;let sum=0;const body=d.slice(0,-1);for(let i=0;i<body.length;i++)sum+=Number(body[body.length-1-i])*(i+1);return sum%10===Number(d.slice(-1))}
+
+if(DATA.asof) $('asof').textContent = `자료: ${DATA.source.replace(/\.xlsx$/i,'')} · 기준일 ${DATA.asof} · 공동등록 완료 물질 ${DATA.items.length.toLocaleString()}건`;
+
+function search(raw){
+  const q = raw.trim(); if(!q) return {type:'empty'};
+  const k = key(q), ck = casKey(q);
+  const exact = DATA.items.filter(it => (it.cas && casKey(it.cas)===ck) || casKey(it.casRaw)===ck || it.id.some(id=>key(id)===k));
+  if(exact.length) return {type:'hit', items:exact, q};
+  if(/[A-Z]{3,}/i.test(q) && !/^KE[-\s]?\d/i.test(q)){
+    const lq = q.toLowerCase();
+    const byName = DATA.items.filter(it => it.n.toLowerCase().includes(lq)).slice(0,30);
+    if(byName.length) return {type:'names', items:byName, q};
+  }
+  return {type:'none', q};
+}
+
+function card(it){
+  const st = STATUS[it.status||'late'];
+  const telDigits = (it.tel.match(/[\d-]{7,}/)||[''])[0];
+  const contact = it.tel || it.org ? `<div class="contact">${it.tel?(telDigits?`<a class="tel" href="tel:${esc(telDigits.replace(/-/g,''))}">☎ ${esc(it.tel)}</a>`:`<span class="tel">${esc(it.tel)}</span>`):''}${it.org?`<span class="org">담당 대리인 · ${esc(it.org)}</span>`:''}</div>` : '<div class="contact org">등록된 문의처가 없습니다. 산업계도움센터에 문의해 주세요.</div>';
+  const tags = [it.note].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  return `<article class="card"><div class="status ${st.cls}"><span class="dot"></span>${st.label}</div><div class="body">
+    <p class="name">${esc(it.n)}</p>
+    <dl><dt>CAS 번호</dt><dd>${esc(it.casRaw||'-')}</dd><dt>고유번호</dt><dd>${esc(it.id.join(', ')||'-')}</dd>${tags?`<dt>비고</dt><dd>${tags}</dd>`:''}</dl>
+    <div class="next"><strong>다음 단계</strong>${st.next}${contact}</div>
+  </div></article>`;
+}
+
+function render(res){
+  const el = $('result');
+  document.body.classList.toggle('has-result', res.type!=='empty');
+  if(res.type==='empty'){el.innerHTML='';return}
+  if(res.type==='hit'){el.innerHTML = res.items.map(card).join('');return}
+  if(res.type==='names'){
+    el.innerHTML = `<p class="list-head">'${esc(res.q)}'이(가) 들어간 물질 ${res.items.length}건${res.items.length===30?' (앞 30건만 표시)':''}</p>` +
+      res.items.map((it,i)=>`<button class="pick" data-i="${i}">${esc(it.n)}<small>CAS ${esc(it.casRaw||'-')} · ${esc(it.id.join(', ')||'-')}</small></button>`).join('');
+    el.querySelectorAll('.pick').forEach(b=>b.onclick=()=>{const it=res.items[b.dataset.i];el.innerHTML=card(it);window.scrollTo({top:0,behavior:'smooth'})});
+    return;
+  }
+  const looksCas = /^\d{2,7}-\d{2}-\d$/.test(res.q.trim());
+  const warn = looksCas && !casValid(res.q.trim()) ? '<p class="msg">입력한 CAS 번호의 검증 숫자가 맞지 않습니다. 번호를 다시 확인해 주세요.</p>' : '';
+  el.innerHTML = `<article class="card"><div class="status none"><span class="dot"></span>공동등록 완료 목록에 없는 물질</div><div class="body">
+    <p class="name">${esc(res.q)}</p>${warn}
+    <div class="next"><strong>다음 단계</strong>이 번호는 공동등록이 완료된 물질 목록(기준일 ${esc(DATA.asof)})에 없습니다. 따라서 <b>공동등록을 진행해야 하는 물질</b>이거나 <b>신규화학물질</b>입니다. 번호가 정확한지 한 번 더 확인하신 뒤 아래 번호로 문의해 주세요.<div class="contact"><a class="tel" href="tel:0260051228">☎ 02-6005-1228</a></div></div>
+  </div></article>`;
+}
+
+function run(q, push=true){
+  $('q').value = q; render(search(q));
+  if(push){const u=new URL(location.href); q?u.searchParams.set('q',q):u.searchParams.delete('q'); history.replaceState(null,'',u)}
+}
+$('f').addEventListener('submit', e=>{e.preventDefault(); run($('q').value)});
+$('hint').querySelectorAll('button[data-q]').forEach(b=>b.onclick=()=>run(b.dataset.q));
+const initial = new URLSearchParams(location.search).get('q'); if(initial) run(initial,false);
 </script>
-</body></html>
+</body>
+</html>
