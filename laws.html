@@ -45,6 +45,19 @@ h2 small{font-size:13px;font-weight:400;color:var(--muted)}
  .tbl td.t,.tbl td.no{display:block}.tbl td.t::before,.tbl td.no::before{display:none}
  .tbl td.no{display:none}.tbl td.t{font-size:15px;margin-bottom:6px}
 }
+
+.site-footer{padding:8px 16px 32px;color:var(--muted);font-size:13px}
+.site-footer a{color:var(--muted)}
+.corp{display:flex;align-items:center;justify-content:center;gap:18px;margin:12px auto 0;padding-top:18px;border-top:1px solid var(--line);max-width:720px;text-align:left}
+.logo{display:block;height:38px;width:auto}
+.logo-link{flex:none;border-radius:8px}
+@media (prefers-color-scheme:dark){.logo-link{background:#fff;padding:5px 8px}}
+.corp-info{display:flex;flex-direction:column;gap:1px;line-height:1.6}
+.corp-info strong{color:var(--text);font-size:13px}
+.corp-info address{font-style:normal;font-size:12px}
+.corp-info small{font-size:11px;letter-spacing:.3px}
+.nowrap{white-space:nowrap}
+@media(max-width:560px){.corp{flex-direction:column;text-align:center;gap:10px}.corp-info{align-items:center}}
 </style>
 </head>
 <body>
@@ -59,6 +72,16 @@ h2 small{font-size:13px;font-weight:400;color:var(--muted)}
   <div id="sections"></div>
   <div class="note" id="note"></div>
 </main>
+<footer class="site-footer">
+  <div class="corp">
+    <a href="https://www.to21.co.kr" target="_blank" rel="noopener" class="logo-link"><img src="images/to21-logo.png" alt="티오이십일" class="logo" width="178" height="61"></a>
+    <div class="corp-info">
+      <strong>티오이십일 화학규제본부 등록대응팀</strong>
+      <address>06631 서울시 서초구 서초대로 350, 2층(서초동, 동아빌라트) <span class="nowrap">Tel. <a href="tel:+82260051228">82-2-6005-1228</a></span></address>
+      <small>COPYRIGHT ⓒ TO21. ALL RIGHTS RESERVED.</small>
+    </div>
+  </div>
+</footer>
 <script src="data/laws.js"></script>
 <script>
 const D = window.LAW_DATA || {};

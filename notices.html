@@ -14,6 +14,19 @@
 .note{margin-top:20px;padding:15px 17px;border-radius:12px;background:var(--surface2);border:1px solid var(--line);font-size:13px;line-height:1.65;color:var(--muted)}
 .modal-backdrop{position:fixed;inset:0;background:rgba(8,18,28,.58);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal-backdrop.open{display:flex}.modal{width:min(760px,100%);max-height:88vh;overflow:auto;background:var(--surface);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.28)}.modal-head{padding:23px 24px 18px;border-bottom:1px solid var(--line)}.modal-title{font-size:20px;font-weight:800;line-height:1.5;margin:0}.modal-meta{margin-top:10px;color:var(--muted);font-size:13px}.modal-body{padding:24px;line-height:1.8;font-size:14px}.modal-body .summary{padding:15px 16px;border-radius:11px;background:var(--surface2);border:1px solid var(--line);margin-bottom:20px}.actions{display:flex;gap:9px;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:11px 15px;text-decoration:none;font-weight:700;font-size:13px;cursor:pointer}.primary{background:#1f497d;color:#fff}.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--line)}.close{margin-left:auto;background:transparent;border:0;color:var(--muted);font-size:22px;cursor:pointer}.modal-head-row{display:flex;gap:12px;align-items:flex-start}
 @media(max-width:640px){.header{padding:26px 18px}.header h1{font-size:23px}.container{padding:18px}.item{padding:16px}.item-top{display:block}.date{display:block;margin-top:7px}.bar{align-items:flex-start;flex-direction:column}.modal-body,.modal-head{padding:19px}}
+
+.site-footer{padding:8px 16px 32px;color:var(--muted);font-size:13px}
+.site-footer a{color:var(--muted)}
+.corp{display:flex;align-items:center;justify-content:center;gap:18px;margin:12px auto 0;padding-top:18px;border-top:1px solid var(--line);max-width:720px;text-align:left}
+.logo{display:block;height:38px;width:auto}
+.logo-link{flex:none;border-radius:8px}
+@media (prefers-color-scheme:dark){.logo-link{background:#fff;padding:5px 8px}}
+.corp-info{display:flex;flex-direction:column;gap:1px;line-height:1.6}
+.corp-info strong{color:var(--text);font-size:13px}
+.corp-info address{font-style:normal;font-size:12px}
+.corp-info small{font-size:11px;letter-spacing:.3px}
+.nowrap{white-space:nowrap}
+@media(max-width:560px){.corp{flex-direction:column;text-align:center;gap:10px}.corp-info{align-items:center}}
 </style>
 </head>
 <body>
@@ -24,6 +37,16 @@
 <section class="list" id="list"></section>
 <div class="note" id="note"></div>
 </main>
+<footer class="site-footer">
+  <div class="corp">
+    <a href="https://www.to21.co.kr" target="_blank" rel="noopener" class="logo-link"><img src="images/to21-logo.png" alt="티오이십일" class="logo" width="178" height="61"></a>
+    <div class="corp-info">
+      <strong>티오이십일 화학규제본부 등록대응팀</strong>
+      <address>06631 서울시 서초구 서초대로 350, 2층(서초동, 동아빌라트) <span class="nowrap">Tel. <a href="tel:+82260051228">82-2-6005-1228</a></span></address>
+      <small>COPYRIGHT ⓒ TO21. ALL RIGHTS RESERVED.</small>
+    </div>
+  </div>
+</footer>
 <div class="modal-backdrop" id="backdrop"><article class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div class="modal-head-row"><div style="flex:1"><h2 class="modal-title" id="mTitle"></h2><div class="modal-meta" id="mMeta"></div></div><button class="close" id="close" aria-label="닫기">×</button></div></div><div class="modal-body" id="mBody"></div></article></div>
 </div>
 <script src="data/notices.js"></script>
