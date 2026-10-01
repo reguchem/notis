@@ -150,7 +150,7 @@ function render(res){
     return;
   }
   const q = res.q.trim();
-  const warn = /^\d{2,7}-\d{2}-\d$/.test(q) && !casValid(q) ? '<p class="msg">입력한 CAS 번호의 검증 숫자가 맞지 않습니다. 번호를 다시 확인해 주세요.</p>' : '';
+  const warn = `<p class="msg">입력한 ${/^\d{2,7}-?\d{2}-?\d$/.test(q) ? 'CAS 번호' : '번호'}는 기존화학물질 목록에 등재되어 있지 않습니다.</p>`;
   el.innerHTML = `<article class="card"><div class="status new"><span class="dot"></span>${STATUS.new.label}</div><div class="body">
     <p class="name">${esc(q)}</p>${warn}
     <div class="next"><strong>다음 단계</strong>${STATUS.new.next()}${telBlock({status:'new'})}</div>
