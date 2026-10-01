@@ -20,28 +20,29 @@
 <div id="app">
 <header class="header"><div class="header-inner"><div class="eyebrow"><a href="index.html" style="color:inherit">← 물질 등록 조회</a> · 산업계도움센터 공지사항</div><h1>최근 1개월 공지사항</h1><p>산업계도움센터 공지사항에서 최근 등록된 내용을 한눈에 확인할 수 있습니다.</p></div></header>
 <main class="container">
-<div class="bar"><div><span class="badge">최근 1개월</span> <span class="count">2026.08.31 ~ 2026.09.29 기준</span></div><div class="count">총 9건</div></div>
+<div class="bar"><div><span class="badge">최근 1개월</span> <span class="count" id="range"></span></div><div class="count" id="total"></div></div>
 <section class="list" id="list"></section>
-<div class="note">※ 목록과 등록일은 산업계도움센터 공지사항 페이지를 기준으로 2026년 9월 29일 확인한 내용입니다. 항목을 클릭하면 상세 내용을 볼 수 있으며, 원문은 산업계도움센터에서 열 수 있습니다.</div>
+<div class="note" id="note"></div>
 </main>
 <div class="modal-backdrop" id="backdrop"><article class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div class="modal-head-row"><div style="flex:1"><h2 class="modal-title" id="mTitle"></h2><div class="modal-meta" id="mMeta"></div></div><button class="close" id="close" aria-label="닫기">×</button></div></div><div class="modal-body" id="mBody"></div></article></div>
 </div>
+<script src="data/notices.js"></script>
 <script>
-const notices=[
-{title:'2026년 화학물질 유해성시험자료 신규 및 기존화학물질 수요조사 안내',date:'2026-09-21',views:305,summary:'2026년 화학물질 유해성시험자료와 관련한 신규 및 기존화학물질 수요조사 안내 공지입니다. 세부 조사내용과 제출 방법은 원문 및 첨부자료에서 확인할 수 있습니다.'},
-{title:'등록정보공개 및 자료보호 특례요청 안내',date:'2026-09-21',views:344,summary:'화학물질 등록정보 공개와 자료보호 특례요청에 관한 안내입니다. 적용 대상과 요청 절차 등 세부 사항은 원문에서 확인할 수 있습니다.'},
-{title:'[2026년 화학물질 제도 이행 및 산업계 지원 권역별 설명회] 개최 안내',date:'2026-09-18',views:662,summary:'2026년 화학물질 제도 이행 및 산업계 지원을 위한 권역별 설명회 개최 안내입니다. 일정과 장소, 참여 방법 등은 원문을 확인해 주세요.'},
-{title:'[2026년 산업계 대상 화평법 이행 교육 안내(10월)]',date:'2026-09-18',views:510,summary:'2026년 10월 산업계 대상 화평법 이행 교육 안내입니다. 교육 일정과 신청 관련 세부사항은 원문 및 첨부자료에서 확인할 수 있습니다.'},
-{title:'「동물대체시험 인프라 구축 관련 설문조사」 참여 안내',date:'2026-09-10',views:280,summary:'동물대체시험 인프라 구축과 관련한 설문조사 참여 안내입니다. 설문 목적과 참여 방법은 원문에서 확인할 수 있습니다.'},
-{title:'(신청마감) 화학물질 등록 이행 촉진을 위한 화학물질 업종별 간담회 개최 안내',date:'2026-09-09',views:764,summary:'화학물질 등록 이행 촉진을 위한 업종별 간담회 개최 안내입니다. 제목에 표시된 것처럼 신청이 마감된 공지입니다.'},
-{title:'산업계도움센터 서버 작업으로 인한 시스템 중단 안내(9.9.(수))',date:'2026-09-07',views:143,summary:'산업계도움센터 서버 작업에 따른 시스템 중단 안내입니다.'},
-{title:'「GLP 기반 동물대체법 시범 교육훈련」 개최 안내',date:'2026-09-02',views:288,summary:'GLP 기반 동물대체법 시범 교육훈련 개최 안내입니다. 교육 일정과 참가 관련 내용은 원문에서 확인할 수 있습니다.'},
-{title:'「산업계 녹색화학 실천 우수사례」 공모전 개최 안내',date:'2026-08-31',views:207,summary:'산업계 녹색화학 실천 우수사례 공모전 개최 안내입니다. 공모 내용과 신청 방법 등은 원문에서 확인할 수 있습니다.'}
-];
-const original='https://www.chemnavi.or.kr/chemnavi/spboard/notice.do';
+const D=window.NOTICE_DATA||{items:[]};
+const notices=D.items||[];
+const LIST='https://www.chemnavi.or.kr/chemnavi/spboard/notice.do';
+const detail=idx=>`https://www.chemnavi.or.kr/chemnavi/spboard/noticedetail.do?idx=${encodeURIComponent(idx)}`;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const linkify=s=>esc(s).replace(/https?:\/\/[^\s<]+/g,u=>`<a href="${u}" target="_blank" rel="noopener">${u}</a>`).replace(/\n/g,'<br>');
+const dot=d=>String(d||'').replace(/-/g,'.');
+document.getElementById('range').textContent=D.from?`${dot(D.from)} ~ ${dot(D.to)} 기준`:'';
+document.getElementById('total').textContent=`총 ${notices.length}건`;
+document.getElementById('note').textContent=`※ 산업계도움센터 공지사항을 매일 아침 자동으로 모아 보여 줍니다. 마지막 갱신: ${dot(D.updated)}. 항목을 누르면 본문 앞부분을 볼 수 있고, 첨부파일과 전체 본문은 원문에서 확인할 수 있습니다.`;
 const list=document.getElementById('list');
-notices.forEach((n,i)=>{const b=document.createElement('button');b.className='item';b.innerHTML=`<div class="item-top"><div class="title">${n.title}</div><div class="date">${n.date}</div></div><div class="meta"><span>관리자</span><span>·</span><span>조회 ${n.views}</span>${i<4?'<span class="new">· NEW</span>':''}</div>`;b.onclick=()=>openModal(n);list.appendChild(b)});
-function openModal(n){document.getElementById('mTitle').textContent=n.title;document.getElementById('mMeta').textContent=`작성자 관리자 · 등록일 ${n.date} · 조회 ${n.views}`;document.getElementById('mBody').innerHTML=`<div class="summary">${n.summary}</div><div>이 페이지는 산업계도움센터의 최근 공지사항을 별도로 모아 보여주는 화면입니다. 최신 공지의 정확한 본문, 첨부파일 및 원문 형식은 아래 원문 보기에서 확인할 수 있습니다.</div><div class="actions"><a class="btn primary" href="${original}" target="_blank" rel="noopener">산업계도움센터 원문 보기 ↗</a><button class="btn secondary" onclick="closeModal()">닫기</button></div>`;document.getElementById('backdrop').classList.add('open')}
+const recent=new Date(Date.now()-7*864e5).toISOString().slice(0,10);
+if(!notices.length) list.innerHTML='<div class="note">최근 1개월 동안 등록된 공지사항이 없습니다.</div>';
+notices.forEach(n=>{const b=document.createElement('button');b.className='item';b.innerHTML=`<div class="item-top"><div class="title">${esc(n.title)}</div><div class="date">${esc(n.date)}</div></div><div class="meta"><span>관리자</span><span>·</span><span>조회 ${Number(n.views).toLocaleString()}</span>${n.file?'<span>· 첨부</span>':''}${n.date>=recent?'<span class="new">· NEW</span>':''}</div>`;b.onclick=()=>openModal(n);list.appendChild(b)});
+function openModal(n){document.getElementById('mTitle').textContent=n.title;document.getElementById('mMeta').textContent=`작성자 관리자 · 등록일 ${n.date} · 조회 ${Number(n.views).toLocaleString()}`;document.getElementById('mBody').innerHTML=`<div class="summary">${n.summary?linkify(n.summary):'본문이 이미지나 첨부파일로 되어 있습니다. 원문에서 확인해 주세요.'}</div><div>본문 앞부분만 보여 줍니다. 첨부파일과 전체 내용은 원문에서 확인할 수 있습니다.</div><div class="actions"><a class="btn primary" href="${detail(n.idx)}" target="_blank" rel="noopener">산업계도움센터 원문 보기 ↗</a><button class="btn secondary" onclick="closeModal()">닫기</button></div>`;document.getElementById('backdrop').classList.add('open')}
 function closeModal(){document.getElementById('backdrop').classList.remove('open')}
 document.getElementById('close').onclick=closeModal;document.getElementById('backdrop').addEventListener('click',e=>{if(e.target.id==='backdrop')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 </script>
