@@ -48,6 +48,7 @@ dt{color:var(--muted)}dd{margin:0;word-break:break-all}
 .pick:hover{border-color:var(--focus)}
 .pick small{display:block;color:var(--muted);margin-top:3px}
 .msg{font-size:14px;line-height:1.7;color:var(--muted)}
+.recheck{margin-top:14px;padding:16px 18px;border-radius:14px;border:1px solid var(--line);font-size:14px;line-height:1.7}.recheck strong{display:block;font-size:15px;color:var(--warn)}.recheck p{margin:6px 0}.recheck blockquote{margin:10px 0;padding:12px 14px;border-left:3px solid var(--brand);background:var(--surface2);border-radius:0 10px 10px 0}.recheck ol{margin:8px 0 0;padding-left:22px}.recheck li{margin:4px 0}
 footer{padding:22px 16px 28px;text-align:center;font-size:13px;color:var(--muted);line-height:1.8}
 footer nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:6px}
 footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
@@ -153,7 +154,16 @@ function render(res){
   el.innerHTML = `<article class="card"><div class="status new"><span class="dot"></span>${STATUS.new.label}</div><div class="body">
     <p class="name">${esc(q)}</p>${warn}
     <div class="next"><strong>다음 단계</strong>${STATUS.new.next()}${telBlock({status:'new'})}</div>
-    <p class="msg" style="margin-top:12px">※ 기존화학물질의 수화물 또는 무수물도 기존화학물질에 포함됩니다. 수화물·무수물의 CAS 번호로도 검색해 보세요.</p>
+    <div class="recheck"><strong>기존화학물질로 인정될 수 있는지 다시 확인해 보세요</strong>
+      <p>기존화학물질 목록에 없더라도, 아래 경우에 해당하면 기존화학물질로 봅니다.</p>
+      <blockquote><b>기존화학물질 고시 제3조(기존화학물질 인정)</b> 다음 각 호에 해당하는 경우는 기존화학물질로 본다.
+        <ol><li>기존화학물질의 수화물 또는 무수물</li>
+        <li>2가지 이상의 성분으로 구성된 반응생성물로서 모든 성분이 기존화학물질인 경우(반응생성물 내 각 성분의 분리가 기술적으로 어렵고 그 자체로 시장에 유통되거나 취급되는 경우로 한정한다.)</li>
+        <li>기존화학물질로 고시된 다성분물질의 하위이성질체</li>
+        <li>그 밖에 <a href="https://www.law.go.kr/admRulSc.do?menuId=5&amp;subMenuId=41&amp;tabMenuId=183&amp;query=%EA%B8%B0%EC%A1%B4%ED%99%94%ED%95%99%EB%AC%BC%EC%A7%88#AJAX" target="_blank" rel="noopener">[별표 3]</a>에 해당하는 화학물질</li></ol>
+      </blockquote>
+      <p>해당 여부가 애매하면 위 번호로 문의해 주세요.</p>
+    </div>
   </div></article>`;
 }
 function run(q, push=true){
