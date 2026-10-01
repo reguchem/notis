@@ -27,6 +27,17 @@ button.go:hover{filter:brightness(1.12)}
 input:focus-visible{outline:0}button.go:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .hint{margin-top:14px;font-size:13px;color:var(--muted)}
 .hint button{border:0;background:none;color:var(--brand);font:inherit;cursor:pointer;padding:0 2px;text-decoration:underline;text-underline-offset:2px}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px auto 0;max-width:688px}
+.qbtn{position:relative;display:flex;align-items:center;gap:12px;text-align:left;text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.qbtn:hover{border-color:var(--focus);box-shadow:0 6px 18px rgba(31,73,125,.12);transform:translateY(-1px)}
+.qbtn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.qicon{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--accent-bg);color:var(--brand)}
+.qtext{display:flex;flex-direction:column;min-width:0}
+.qtext b{font-size:14px;line-height:1.4}
+.qtext small{font-size:12px;color:var(--muted);margin-top:2px}
+.qnew{margin-left:auto;flex:none;font-size:11px;font-weight:800;letter-spacing:.3px;color:#fff;background:#d6453d;border-radius:999px;padding:3px 8px}
+body.has-result .quick{margin-top:18px}
+@media(max-width:560px){.quick{grid-template-columns:1fr}}
 #result{margin:28px 0 40px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:14px}
 .status{display:flex;align-items:center;gap:10px;padding:16px 22px;font-weight:700;font-size:16px}
@@ -78,11 +89,15 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
       <button class="go" type="submit">검색</button>
     </form>
     <div class="hint" id="hint">예시: <button type="button" data-q="13463-41-7">13463-41-7</button> · <button type="button" data-q="74-93-1">74-93-1</button> · 영문 물질명 일부로도 찾을 수 있습니다.</div>
+    <nav class="quick" aria-label="바로가기">
+      <a class="qbtn" href="notices.html"><span class="qicon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></span><span class="qtext"><b>산업계도움센터 최근 공지사항</b><small id="qNoticeSub">최근 1개월 공지</small></span><span class="qnew" id="qNoticeNew" hidden></span></a>
+      <a class="qbtn" href="laws.html"><span class="qicon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M3 7h18"/><path d="m6 7-3 7a3 3 0 0 0 6 0z"/><path d="m18 7-3 7a3 3 0 0 0 6 0z"/></svg></span><span class="qtext"><b>기후에너지환경부 법령 동향</b><small id="qLawSub">최근 3일 법령 동향</small></span><span class="qnew" id="qLawNew" hidden></span></a>
+    </nav>
   </section>
   <section id="result" aria-live="polite"></section>
 </main>
 <footer>
-  <nav><a href="notices.html">산업계도움센터 최근 공지사항</a><a href="laws.html">기후에너지환경부 법령 동향</a><a href="https://www.to21.co.kr" target="_blank" rel="noopener">티오이십일 바로가기</a></nav>
+  <nav><a href="https://www.to21.co.kr" target="_blank" rel="noopener">티오이십일 바로가기</a></nav>
   <div id="asof"></div>
   <div class="corp">
     <a href="https://www.to21.co.kr" target="_blank" rel="noopener" class="logo-link"><img src="images/to21-logo.png" alt="티오이십일" class="logo" width="178" height="61"></a>
@@ -93,6 +108,8 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
     </div>
   </div>
 </footer>
+<script src="data/notices.js"></script>
+<script src="data/laws.js"></script>
 <script src="data/substances.js"></script>
 <script src="data/existing.js"></script>
 <script>
@@ -126,6 +143,15 @@ const total = existing.length;
 $('asof').textContent = `자료: 공동등록 완료 물질 ${joint.length.toLocaleString()}건(기준일 ${DATA.asof}) · 기존화학물질 별표1·별표2 ${total.toLocaleString()}건`;
 
 function uniq(arr){return [...new Set(arr)]}
+
+// 바로가기 버튼: 어제와 비교해 오늘 새로 들어온 건이 있으면 NEW 표시
+(function(){
+  const isNew = (x, d) => x && x.firstSeen && x.firstSeen === d.updated;
+  const setNew = (id, n) => { const el = $(id); if (n > 0) { el.textContent = `NEW ${n}`; el.hidden = false; el.parentElement.setAttribute('aria-label', el.parentElement.textContent.replace(/NEW \d+$/, '') + ` (오늘 새 글 ${n}건)`); } };
+  const N = window.NOTICE_DATA, L = window.LAW_DATA;
+  if (N) { setNew('qNoticeNew', (N.items||[]).filter(x => isNew(x, N)).length); $('qNoticeSub').textContent = `최근 1개월 ${(N.items||[]).length}건`; }
+  if (L) { const ks = ['legislative','administrative','laws','rules']; const total = ks.reduce((a,k)=>a+(L[k]||[]).length,0); setNew('qLawNew', ks.reduce((a,k)=>a+(L[k]||[]).filter(x => isNew(x, L)).length,0)); $('qLawSub').textContent = `최근 3일 ${total}건`; }
+})();
 function search(raw){
   const q = raw.trim(); if(!q) return {type:'empty'};
   let hits = uniq([...(idx.get('I'+key(q))||[]), ...(idx.get('C'+casKey(q))||[])]);

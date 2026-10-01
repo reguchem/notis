@@ -5,6 +5,7 @@ GitHub Actions(.github/workflows/update-notices.yml)가 매일 실행합니다. 
 """
 import datetime as dt, html, json, os, re, sys, time, urllib.request
 from html.parser import HTMLParser
+from seen import load_prev, mark
 
 BASE = 'https://www.chemnavi.or.kr'
 LIST_URL = BASE + '/chemnavi/spboard/notice.do?pageIndex={}'
@@ -105,7 +106,9 @@ def main():
         it['summary'] = summary(it['idx'])
         time.sleep(0.5)
     items.sort(key=lambda x: (x['date'], int(x['idx'])), reverse=True)
-    data = {'updated': today.isoformat(), 'from': since.isoformat(), 'to': today.isoformat(), 'items': items}
+    prev = load_prev(OUT)
+    new = mark(items, prev.get('items'), lambda x: x['idx'], today.isoformat(), prev.get('updated'))
+    data = {'updated': today.isoformat(), 'from': since.isoformat(), 'to': today.isoformat(), 'newCount': new, 'items': items}
     with open(OUT, 'w', encoding='utf-8') as f:
         f.write('// 자동 생성 파일: tools/update_notices.py 가 매일 갱신합니다.\n')
         f.write('window.NOTICE_DATA = ' + json.dumps(data, ensure_ascii=False, indent=1) + ';\n')

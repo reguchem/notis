@@ -19,7 +19,8 @@ window.LAW_DATA = {
    "field": "환경",
    "period": "2026. 9. 30. ~2026. 11. 9.",
    "start": "2026-09-30",
-   "remain": "38일"
+   "remain": "38일",
+   "firstSeen": "2026-10-01"
   }
  ],
  "administrative": [
@@ -30,7 +31,8 @@ window.LAW_DATA = {
    "org": "기후에너지환경부",
    "notice": "제2026-904호",
    "period": "2026. 10. 1. ~ 2026. 10. 12.",
-   "start": "2026-10-01"
+   "start": "2026-10-01",
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "지하수오염시설의 오염평가보고서 및 정화계획 작성 등에 관한 규정 제정안 행정예고",
@@ -39,7 +41,8 @@ window.LAW_DATA = {
    "org": "기후에너지환경부",
    "notice": "제2026-896호",
    "period": "2026. 9. 29. ~ 2026. 10. 20.",
-   "start": "2026-09-29"
+   "start": "2026-09-29",
+   "firstSeen": "2026-10-01"
   }
  ],
  "laws": [
@@ -55,7 +58,8 @@ window.LAW_DATA = {
    "tags": [
     "공포",
     "시행"
-   ]
+   ],
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "가습기살균제 피해구제 및 지원을 위한 특별법 시행령",
@@ -69,7 +73,8 @@ window.LAW_DATA = {
    "tags": [
     "공포",
     "시행예정"
-   ]
+   ],
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "기후위기 대응을 위한 탄소중립ㆍ녹색성장 기본법 시행령",
@@ -82,7 +87,8 @@ window.LAW_DATA = {
    "effective": "2026-10-08",
    "tags": [
     "시행예정"
-   ]
+   ],
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "수자원의 조사ㆍ계획 및 관리에 관한 법률 시행령",
@@ -95,7 +101,8 @@ window.LAW_DATA = {
    "effective": "2026-10-08",
    "tags": [
     "시행예정"
-   ]
+   ],
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "가습기살균제 피해구제 및 지원을 위한 특별법",
@@ -108,7 +115,8 @@ window.LAW_DATA = {
    "effective": "2026-10-08",
    "tags": [
     "시행예정"
-   ]
+   ],
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "수자원의 조사ㆍ계획 및 관리에 관한 법률",
@@ -121,7 +129,8 @@ window.LAW_DATA = {
    "effective": "2026-10-08",
    "tags": [
     "시행예정"
-   ]
+   ],
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "화학물질관리법",
@@ -134,7 +143,8 @@ window.LAW_DATA = {
    "effective": "2026-10-08",
    "tags": [
     "시행예정"
-   ]
+   ],
+   "firstSeen": "2026-10-01"
   }
  ],
  "rules": [
@@ -143,28 +153,38 @@ window.LAW_DATA = {
    "date": "2026-10-01",
    "number": "2026-19",
    "org": "화학물질안전원",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1942"
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1942",
+   "firstSeen": "2026-10-02"
   },
   {
    "title": "환경개선특별회계 등 융자금 지원조건",
    "date": "2026-10-01",
    "number": "2026-247",
    "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941"
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941",
+   "firstSeen": "2026-10-02"
   },
   {
    "title": "해양환경ㆍ환경영향조사 및 환경성평가 등에 관한 규정",
    "date": "2026-09-30",
    "number": "2026-246,2026-111",
    "org": "기후에너지환경부,해양수산부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940"
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940",
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "2027년 바이오가스 민간의무생산자 고시",
    "date": "2026-09-30",
    "number": "2026-242",
    "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1939"
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1939",
+   "firstSeen": "2026-10-01"
   }
- ]
+ ],
+ "newCount": {
+  "legislative": 0,
+  "administrative": 0,
+  "laws": 0,
+  "rules": 2
+ }
 };

@@ -29,6 +29,7 @@ h2 small{font-size:13px;font-weight:400;color:var(--muted)}
 .tbl td.t a{text-decoration:none;font-weight:600}.tbl td.t a:hover{text-decoration:underline}
 .tbl td.no{width:52px;color:var(--muted)}
 .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--tag);color:var(--brand);margin:1px 2px;white-space:nowrap}
+.tag.new{background:#d6453d;color:#fff}
 .tag.soon{background:var(--warn-bg);color:var(--warn)}
 .sub{display:block;font-size:12px;color:var(--muted)}
 .empty{background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:22px;text-align:center;color:var(--muted);font-size:14px}
@@ -88,22 +89,24 @@ const D = window.LAW_DATA || {};
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dot = d => d ? String(d).replace(/^(\d{4})-0?(\d+)-0?(\d+)$/, '$1. $2. $3.') : '-';
 const link = (t, u) => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>` : esc(t);
+const isNew = x => x.firstSeen && x.firstSeen === D.updated;
+const NEW = x => isNew(x) ? ' <span class="tag new">NEW</span>' : '';
 const range = `최근 3일 · ${dot(D.from)} ~ ${dot(D.to)}`;
 const SECTIONS = [
   {id:'leg', key:'legislative', title:'입법예고 현황', sub:range,
    cols:['No','법령 제명','소관부처','법령분야','입법의견 접수기간','남은기간'],
-   row:(x,i)=>[i, link(x.title,x.url)+(x.kind?` <span class="tag">${esc(x.kind)}</span>`:''), `${esc(x.org)}${x.lawType?`<span class="sub">(${esc(x.lawType)})</span>`:''}`, esc(x.field), esc(x.period), esc(x.remain)]},
+   row:(x,i)=>[i, link(x.title,x.url)+NEW(x)+(x.kind?` <span class="tag">${esc(x.kind)}</span>`:''), `${esc(x.org)}${x.lawType?`<span class="sub">(${esc(x.lawType)})</span>`:''}`, esc(x.field), esc(x.period), esc(x.remain)]},
   {id:'adm', key:'administrative', title:'행정예고 현황', sub:range,
    cols:['No','행정예고명','행정규칙','기관(공고번호)','입법의견 접수기간'],
-   row:(x,i)=>[i, link(x.title,x.url), esc(x.ruleType), `${esc(x.org)}${x.notice?`<span class="sub">(${esc(x.notice)})</span>`:''}`, esc(x.period)]},
+   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), esc(x.ruleType), `${esc(x.org)}${x.notice?`<span class="sub">(${esc(x.notice)})</span>`:''}`, esc(x.period)]},
   {id:'law', key:'laws', title:'법령 현황: 공포 · 시행 · 예정', sub:`${range} · 시행예정은 앞으로 ${D.ahead||7}일`,
    cols:['No','법령명','구분','소관부처','제정·개정구분','법령종류','공포일자','시행일자'],
-   row:(x,i)=>[i, link(x.title,x.url), (x.tags||[]).map(t=>`<span class="tag${t==='시행예정'?' soon':''}">${esc(t)}</span>`).join(''), esc(x.org), esc(x.revision), esc(x.lawType), dot(x.promulgated), dot(x.effective)]},
+   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), (x.tags||[]).map(t=>`<span class="tag${t==='시행예정'?' soon':''}">${esc(t)}</span>`).join(''), esc(x.org), esc(x.revision), esc(x.lawType), dot(x.promulgated), dot(x.effective)]},
   {id:'rule', key:'rules', title:'법령 현황: 고시 · 훈령 · 예규', sub:range,
    cols:['No','행정규칙명','발령·등록일자','발령번호','소관부서명'],
-   row:(x,i)=>[i, link(x.title,x.url), dot(x.date), esc(x.number), esc(x.org)]}
+   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), dot(x.date), esc(x.number), esc(x.org)]}
 ];
-document.getElementById('jump').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${esc(s.title.replace('법령 현황: ',''))}<span>${(D[s.key]||[]).length}</span></a>`).join('');
+document.getElementById('jump').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${esc(s.title.replace('법령 현황: ',''))}<span>${(D[s.key]||[]).length}</span>${(D[s.key]||[]).some(isNew)?' <b class="tag new">NEW</b>':''}</a>`).join('');
 document.getElementById('sections').innerHTML = SECTIONS.map(s=>{
   const items = D[s.key] || [];
   const body = items.length

@@ -9,6 +9,7 @@ GitHub Actions(.github/workflows/update-notices.yml)가 매일 실행합니다. 
 """
 import datetime as dt, html, json, os, re, sys, time, urllib.parse, urllib.request
 from html.parser import HTMLParser
+from seen import load_prev, mark
 
 DAYS = 3                     # 최근 며칠
 AHEAD = 7                    # 시행예정: 앞으로 며칠 안에 시행되는 법령
@@ -198,6 +199,10 @@ def admin_rules(since, today):
             break
     return out
 
+# 항목을 구별하는 기준 (어제 자료와 비교할 때 사용)
+KEYS = {'legislative': lambda x: x['url'] or x['title'], 'administrative': lambda x: x['url'] or x['title'],
+        'laws': lambda x: (x['url'] or x['title']) + '|' + x['effective'], 'rules': lambda x: x['url'] or x['title']}
+
 def main():
     today = (dt.datetime.utcnow() + dt.timedelta(hours=9)).date()
     since = today - dt.timedelta(days=DAYS)
@@ -221,6 +226,9 @@ def main():
         data['stale'] = sorted(errors)
         if len(errors) == 4:
             raise SystemExit('모든 자료를 가져오지 못했습니다.')
+    prev = load_prev(OUT)
+    data['newCount'] = {k: mark(data.get(k, []), prev.get(k), KEYS[k], iso(today), prev.get('updated'))
+                        for k in KEYS}
     with open(OUT, 'w', encoding='utf-8') as f:
         f.write('// 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.\n')
         f.write('window.LAW_DATA = ' + json.dumps(data, ensure_ascii=False, indent=1) + ';\n')
