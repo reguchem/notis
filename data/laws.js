@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-01",
- "from": "2026-09-28",
- "to": "2026-10-01",
+ "updated": "2026-10-02",
+ "from": "2026-09-29",
+ "to": "2026-10-02",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,7 +19,7 @@ window.LAW_DATA = {
    "field": "환경",
    "period": "2026. 9. 30. ~2026. 11. 9.",
    "start": "2026-09-30",
-   "remain": "39일"
+   "remain": "38일"
   }
  ],
  "administrative": [
@@ -54,7 +54,7 @@ window.LAW_DATA = {
    "effective": "2026-10-02",
    "tags": [
     "공포",
-    "시행예정"
+    "시행"
    ]
   },
   {
@@ -139,17 +139,31 @@ window.LAW_DATA = {
  ],
  "rules": [
   {
-   "title": "정부승인차액계약 운영기준",
-   "date": "2026-09-28",
-   "number": "2026-245",
+   "title": "화학사고예방관리계획서 작성 등에 관한 규정",
+   "date": "2026-10-01",
+   "number": "2026-19",
+   "org": "화학물질안전원",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1942"
+  },
+  {
+   "title": "환경개선특별회계 등 융자금 지원조건",
+   "date": "2026-10-01",
+   "number": "2026-247",
    "org": "기후에너지환경부",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941"
+  },
+  {
+   "title": "해양환경ㆍ환경영향조사 및 환경성평가 등에 관한 규정",
+   "date": "2026-09-30",
+   "number": "2026-246,2026-111",
+   "org": "기후에너지환경부,해양수산부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940"
   },
   {
-   "title": "안전확인대상생활화학제품 승인 등에 관한 규정",
-   "date": "2026-09-28",
-   "number": "2026-18",
-   "org": "화학물질안전원",
+   "title": "2027년 바이오가스 민간의무생산자 고시",
+   "date": "2026-09-30",
+   "number": "2026-242",
+   "org": "기후에너지환경부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1939"
   }
  ]
