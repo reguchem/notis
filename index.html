@@ -6,7 +6,7 @@
 <title>화평법 물질 등록 조회</title>
 <meta name="description" content="CAS 번호나 KE 번호로 화평법 등록 구분과 문의처를 확인합니다.">
 <style>
-:root{color-scheme:light dark;--bg:light-dark(#f7f9fc,#10161d);--surface:light-dark(#fff,#18212b);--surface2:light-dark(#f1f5f9,#1f2a36);--text:light-dark(#17212b,#edf3f8);--muted:light-dark(#5f6f7e,#a9b8c6);--line:light-dark(#d9e2ea,#33424f);--brand:light-dark(#1f497d,#8fb8e8);--brand-strong:#1f497d;--ok-bg:light-dark(#e8f5ee,#16322a);--ok:light-dark(#17693f,#7fd3a6);--warn-bg:light-dark(#fff6e5,#3a2e14);--warn:light-dark(#8a5a00,#f1c46b);--focus:light-dark(#2f6db3,#8fb8e8)}
+:root{color-scheme:light dark;--bg:light-dark(#f7f9fc,#10161d);--surface:light-dark(#fff,#18212b);--surface2:light-dark(#f1f5f9,#1f2a36);--text:light-dark(#17212b,#edf3f8);--muted:light-dark(#5f6f7e,#a9b8c6);--line:light-dark(#d9e2ea,#33424f);--brand:light-dark(#1f497d,#8fb8e8);--brand-strong:#1f497d;--ok-bg:light-dark(#e8f5ee,#16322a);--ok:light-dark(#17693f,#7fd3a6);--warn-bg:light-dark(#fff6e5,#3a2e14);--warn:light-dark(#8a5a00,#f1c46b);--focus:light-dark(#2f6db3,#8fb8e8);--accent-bg:light-dark(#e8f0fa,#1c2f45)}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
 body{font-family:"Pretendard","Malgun Gothic","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;min-height:100vh}
@@ -31,7 +31,7 @@ input:focus-visible{outline:0}button.go:focus-visible{outline:2px solid var(--fo
 .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:14px}
 .status{display:flex;align-items:center;gap:10px;padding:16px 22px;font-weight:700;font-size:16px}
 .status.late{background:var(--ok-bg);color:var(--ok)}
-.status.none{background:var(--warn-bg);color:var(--warn)}
+.status.new{background:var(--warn-bg);color:var(--warn)}.status.joint{background:var(--accent-bg);color:var(--brand)}
 .status .dot{width:10px;height:10px;border-radius:50%;background:currentColor;flex:none}
 .body{padding:20px 22px 22px}
 .name{font-size:18px;font-weight:700;line-height:1.4;word-break:break-word;margin:0 0 12px}
@@ -66,7 +66,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
       </label>
       <button class="go" type="submit">검색</button>
     </form>
-    <div class="hint" id="hint">예시: <button type="button" data-q="13463-41-7">13463-41-7</button> · <button type="button" data-q="KE-35630">KE-35630</button> · 영문 물질명 일부로도 찾을 수 있습니다.</div>
+    <div class="hint" id="hint">예시: <button type="button" data-q="13463-41-7">13463-41-7</button> · <button type="button" data-q="74-93-1">74-93-1</button> · 영문 물질명 일부로도 찾을 수 있습니다.</div>
   </section>
   <section id="result" aria-live="polite"></section>
 </main>
@@ -75,46 +75,68 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
   <div id="asof"></div>
 </footer>
 <script src="data/substances.js"></script>
+<script src="data/existing.js"></script>
 <script>
 const DATA = window.SUBSTANCE_DATA || {items:[],asof:''};
-// 등록 구분. 지금 목록은 모두 공동등록이 완료된 물질이므로 'late'(후발등록 대상)입니다.
+const EXIST = window.EXISTING_DATA || {lists:[]};
+const CONTACT = {tel:'02-6005-1228', href:'tel:0260051228'};
 const STATUS = {
-  late: {label:'공동등록 완료 · 후발등록 대상', cls:'late',
-    next:'이미 공동등록이 완료된 물질입니다. 이 물질을 제조·수입하려면 기존 공동등록에 참여하는 <b>후발등록</b>을 진행해야 합니다. 아래 문의처로 연락해 참여 절차와 자료 사용 조건을 확인하세요.'}
+  late: {label:'기존화학물질 · 공동등록 완료 · 후발등록 대상', cls:'late',
+    next:()=>'이미 공동등록이 완료된 물질입니다. 이 물질을 제조·수입하려면 기존 공동등록에 참여하는 <b>후발등록</b>을 진행해야 합니다. 아래 문의처로 연락해 참여 절차와 자료 사용 조건을 확인하세요.'},
+  joint:{label:'기존화학물질 · 공동등록 진행 대상', cls:'joint',
+    next:it=>`기존화학물질 목록(${esc(it.list)})에 있고, 공동등록 완료 목록(기준일 ${esc(DATA.asof)})에는 없는 물질입니다. 등록하려면 같은 물질을 제조·수입하는 다른 사업자와 함께 <b>공동등록</b>을 진행해야 합니다. 아래 번호로 문의해 주세요.`},
+  new:  {label:'신규화학물질', cls:'new',
+    next:()=>'기존화학물질 목록(별표1·별표2)과 공동등록 완료 목록에 모두 없는 물질이므로 <b>신규화학물질</b>입니다. 등록서류를 <b>개별로</b> 준비해 제출해야 합니다. 번호가 정확한지 한 번 더 확인하신 뒤 아래 번호로 문의해 주세요.'}
 };
 const $ = id => document.getElementById(id);
 const key = s => String(s||'').toUpperCase().replace(/[^0-9A-Z]/g,'');
 const casKey = s => key(s).replace(/^0+/,'');
 const esc = s => String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function casValid(s){const d=s.replace(/-/g,'');if(!/^\d{2,7}-\d{2}-\d$/.test(s))return false;let sum=0;const body=d.slice(0,-1);for(let i=0;i<body.length;i++)sum+=Number(body[body.length-1-i])*(i+1);return sum%10===Number(d.slice(-1))}
+function casValid(s){if(!/^\d{2,7}-\d{2}-\d$/.test(s))return false;const d=s.replace(/-/g,''),b=d.slice(0,-1);let sum=0;for(let i=0;i<b.length;i++)sum+=Number(b[b.length-1-i])*(i+1);return sum%10===Number(d.slice(-1))}
 
-if(DATA.asof) $('asof').textContent = `자료: ${DATA.source.replace(/\.xlsx$/i,'')} · 기준일 ${DATA.asof} · 공동등록 완료 물질 ${DATA.items.length.toLocaleString()}건`;
+// 검색용 색인 만들기
+const joint = DATA.items.map(it=>({...it, status:'late'}));
+const existing = [];
+EXIST.lists.forEach(l=>l.rows.forEach(([id,n,cas])=>existing.push({id:[id], n, cas, casRaw:cas.join(', '), list:l.label, status:'joint'})));
+const idx = new Map(); const add=(k,it)=>{if(!k)return; if(!idx.has(k))idx.set(k,[]); idx.get(k).push(it)};
+const listOf = new Map();
+existing.forEach(it=>{it.id.forEach(id=>{add('I'+key(id),it); listOf.set(key(id),it.list)}); it.cas.forEach(c=>add('C'+casKey(c),it))});
+joint.forEach(it=>{it.id.forEach(id=>add('I'+key(id),it)); (it.cas.length?it.cas:[it.casRaw]).forEach(c=>add('C'+casKey(c),it)); it.list=it.id.map(id=>listOf.get(key(id))).filter(Boolean)[0]||''});
 
+const total = existing.length;
+$('asof').textContent = `자료: 공동등록 완료 물질 ${joint.length.toLocaleString()}건(기준일 ${DATA.asof}) · 기존화학물질 별표1·별표2 ${total.toLocaleString()}건`;
+
+function uniq(arr){return [...new Set(arr)]}
 function search(raw){
   const q = raw.trim(); if(!q) return {type:'empty'};
-  const k = key(q), ck = casKey(q);
-  const exact = DATA.items.filter(it => (it.cas && casKey(it.cas)===ck) || casKey(it.casRaw)===ck || it.id.some(id=>key(id)===k));
-  if(exact.length) return {type:'hit', items:exact, q};
-  if(/[A-Z]{3,}/i.test(q) && !/^KE[-\s]?\d/i.test(q)){
-    const lq = q.toLowerCase();
-    const byName = DATA.items.filter(it => it.n.toLowerCase().includes(lq)).slice(0,30);
-    if(byName.length) return {type:'names', items:byName, q};
+  let hits = uniq([...(idx.get('I'+key(q))||[]), ...(idx.get('C'+casKey(q))||[])]);
+  if(hits.length){
+    const late = hits.filter(h=>h.status==='late');
+    return {type:'hit', items: late.length ? late : hits};
   }
-  return {type:'none', q};
+  if(/[A-Z가-힣]{3,}/i.test(q) && !/^KE[-\s]?\d/i.test(q)){
+    const lq = q.toLowerCase(), seen = new Set(), out = [];
+    for(const it of [...joint, ...existing]){ if(out.length>=30) break; if(it.n.toLowerCase().includes(lq)){const k=it.id.join(); if(seen.has(k))continue; seen.add(k); out.push(it)} }
+    if(out.length) return {type:'names', items: out, q};
+  }
+  return {type:'new', q};
 }
 
+function telBlock(it){
+  if(it.status!=='late') return `<div class="contact"><a class="tel" href="${CONTACT.href}">☎ ${CONTACT.tel}</a></div>`;
+  const d = (it.tel.match(/[\d-]{7,}/)||[''])[0];
+  if(!it.tel && !it.org) return `<div class="contact"><a class="tel" href="${CONTACT.href}">☎ ${CONTACT.tel}</a><span class="org">등록된 대리인 문의처가 없어 대표번호를 안내합니다.</span></div>`;
+  return `<div class="contact">${it.tel?(d?`<a class="tel" href="tel:${esc(d.replace(/-/g,''))}">☎ ${esc(it.tel)}</a>`:`<span class="tel">${esc(it.tel)}</span>`):''}${it.org?`<span class="org">담당 대리인 · ${esc(it.org)}</span>`:''}</div>`;
+}
 function card(it){
-  const st = STATUS[it.status||'late'];
-  const telDigits = (it.tel.match(/[\d-]{7,}/)||[''])[0];
-  const contact = it.tel || it.org ? `<div class="contact">${it.tel?(telDigits?`<a class="tel" href="tel:${esc(telDigits.replace(/-/g,''))}">☎ ${esc(it.tel)}</a>`:`<span class="tel">${esc(it.tel)}</span>`):''}${it.org?`<span class="org">담당 대리인 · ${esc(it.org)}</span>`:''}</div>` : '<div class="contact org">등록된 문의처가 없습니다. 산업계도움센터에 문의해 주세요.</div>';
-  const tags = [it.note].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  const st = STATUS[it.status];
+  const tags = [it.list, it.note].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
   return `<article class="card"><div class="status ${st.cls}"><span class="dot"></span>${st.label}</div><div class="body">
-    <p class="name">${esc(it.n)}</p>
-    <dl><dt>CAS 번호</dt><dd>${esc(it.casRaw||'-')}</dd><dt>고유번호</dt><dd>${esc(it.id.join(', ')||'-')}</dd>${tags?`<dt>비고</dt><dd>${tags}</dd>`:''}</dl>
-    <div class="next"><strong>다음 단계</strong>${st.next}${contact}</div>
+    <p class="name">${esc(it.n||'-')}</p>
+    <dl><dt>CAS 번호</dt><dd>${esc(it.casRaw||'-')}</dd><dt>고유번호</dt><dd>${esc(it.id.join(', ')||'-')}</dd>${tags?`<dt>구분</dt><dd>${tags}</dd>`:''}</dl>
+    <div class="next"><strong>다음 단계</strong>${st.next(it)}${telBlock(it)}</div>
   </div></article>`;
 }
-
 function render(res){
   const el = $('result');
   document.body.classList.toggle('has-result', res.type!=='empty');
@@ -122,18 +144,18 @@ function render(res){
   if(res.type==='hit'){el.innerHTML = res.items.map(card).join('');return}
   if(res.type==='names'){
     el.innerHTML = `<p class="list-head">'${esc(res.q)}'이(가) 들어간 물질 ${res.items.length}건${res.items.length===30?' (앞 30건만 표시)':''}</p>` +
-      res.items.map((it,i)=>`<button class="pick" data-i="${i}">${esc(it.n)}<small>CAS ${esc(it.casRaw||'-')} · ${esc(it.id.join(', ')||'-')}</small></button>`).join('');
-    el.querySelectorAll('.pick').forEach(b=>b.onclick=()=>{const it=res.items[b.dataset.i];el.innerHTML=card(it);window.scrollTo({top:0,behavior:'smooth'})});
+      res.items.map((it,i)=>`<button class="pick" data-i="${i}">${esc(it.n)}<small>${STATUS[it.status].label} · CAS ${esc(it.casRaw||'-')} · ${esc(it.id.join(', '))}</small></button>`).join('');
+    el.querySelectorAll('.pick').forEach(b=>b.onclick=()=>{el.innerHTML=card(res.items[b.dataset.i]);window.scrollTo({top:0,behavior:'smooth'})});
     return;
   }
-  const looksCas = /^\d{2,7}-\d{2}-\d$/.test(res.q.trim());
-  const warn = looksCas && !casValid(res.q.trim()) ? '<p class="msg">입력한 CAS 번호의 검증 숫자가 맞지 않습니다. 번호를 다시 확인해 주세요.</p>' : '';
-  el.innerHTML = `<article class="card"><div class="status none"><span class="dot"></span>공동등록 완료 목록에 없는 물질</div><div class="body">
-    <p class="name">${esc(res.q)}</p>${warn}
-    <div class="next"><strong>다음 단계</strong>이 번호는 공동등록이 완료된 물질 목록(기준일 ${esc(DATA.asof)})에 없습니다. 따라서 <b>공동등록을 진행해야 하는 물질</b>이거나 <b>신규화학물질</b>입니다. 번호가 정확한지 한 번 더 확인하신 뒤 아래 번호로 문의해 주세요.<div class="contact"><a class="tel" href="tel:0260051228">☎ 02-6005-1228</a></div></div>
+  const q = res.q.trim();
+  const warn = /^\d{2,7}-\d{2}-\d$/.test(q) && !casValid(q) ? '<p class="msg">입력한 CAS 번호의 검증 숫자가 맞지 않습니다. 번호를 다시 확인해 주세요.</p>' : '';
+  el.innerHTML = `<article class="card"><div class="status new"><span class="dot"></span>${STATUS.new.label}</div><div class="body">
+    <p class="name">${esc(q)}</p>${warn}
+    <div class="next"><strong>다음 단계</strong>${STATUS.new.next()}${telBlock({status:'new'})}</div>
+    <p class="msg" style="margin-top:12px">※ 기존화학물질의 수화물 또는 무수물도 기존화학물질에 포함됩니다. 수화물·무수물의 CAS 번호로도 검색해 보세요.</p>
   </div></article>`;
 }
-
 function run(q, push=true){
   $('q').value = q; render(search(q));
   if(push){const u=new URL(location.href); q?u.searchParams.set('q',q):u.searchParams.delete('q'); history.replaceState(null,'',u)}
