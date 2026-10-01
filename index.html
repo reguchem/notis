@@ -52,6 +52,16 @@ dt{color:var(--muted)}dd{margin:0;word-break:break-all}
 footer{padding:22px 16px 28px;text-align:center;font-size:13px;color:var(--muted);line-height:1.8}
 footer nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:6px}
 footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
+.corp{display:flex;align-items:center;justify-content:center;gap:18px;margin:18px auto 0;padding-top:18px;border-top:1px solid var(--line);max-width:720px;text-align:left}
+.logo{display:block;height:38px;width:auto}
+.logo-link{flex:none;border-radius:8px}
+@media (prefers-color-scheme:dark){.logo-link{background:#fff;padding:5px 8px}}
+.corp-info{display:flex;flex-direction:column;gap:1px;line-height:1.6}
+.corp-info strong{color:var(--text);font-size:13px}
+.corp-info address{font-style:normal;font-size:12px}
+.corp-info small{font-size:11px;letter-spacing:.3px}
+.nowrap{white-space:nowrap}
+@media(max-width:560px){.corp{flex-direction:column;text-align:center;gap:10px}.corp-info{align-items:center}}
 @media(max-width:560px){.hero{padding-top:14vh}form{flex-direction:column}button.go{padding:14px}input{font-size:16px}dl{grid-template-columns:1fr;gap:2px}dd{margin-bottom:8px}}
 </style>
 </head>
@@ -74,6 +84,14 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
 <footer>
   <nav><a href="notices.html">산업계도움센터 최근 공지사항</a><a href="laws.html">기후에너지환경부 법령 동향</a><a href="https://www.to21.co.kr" target="_blank" rel="noopener">티오이십일 바로가기</a></nav>
   <div id="asof"></div>
+  <div class="corp">
+    <a href="https://www.to21.co.kr" target="_blank" rel="noopener" class="logo-link"><img src="images/to21-logo.png" alt="티오이십일" class="logo" width="178" height="61"></a>
+    <div class="corp-info">
+      <strong>티오이십일 화학규제본부 등록대응팀</strong>
+      <address>06631 서울시 서초구 서초대로 350, 2층(서초동, 동아빌라트) <span class="nowrap">Tel. <a href="tel:+82260051228">82-2-6005-1228</a></span></address>
+      <small>COPYRIGHT ⓒ TO21. ALL RIGHTS RESERVED.</small>
+    </div>
+  </div>
 </footer>
 <script src="data/substances.js"></script>
 <script src="data/existing.js"></script>
