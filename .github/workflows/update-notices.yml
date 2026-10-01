@@ -1,4 +1,4 @@
-name: 공지사항 자동 갱신
+name: 공지사항·법령 동향 자동 갱신
 
 on:
   schedule:
@@ -18,14 +18,18 @@ jobs:
           python-version: '3.12'
       - name: 공지사항 가져오기
         run: python tools/update_notices.py
+        continue-on-error: true
+      - name: 법령 동향 가져오기
+        run: python tools/update_laws.py
+        continue-on-error: true
       - name: 바뀐 내용이 있으면 커밋
         run: |
-          if git diff --quiet -- data/notices.js; then
+          if git diff --quiet -- data/notices.js data/laws.js; then
             echo "변경 없음"
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-            git add data/notices.js
-            git commit -m "공지사항 자동 갱신 $(date -u -d '+9 hours' +%Y-%m-%d)"
+            git add data/notices.js data/laws.js
+            git commit -m "공지사항·법령 동향 자동 갱신 $(date -u -d '+9 hours' +%Y-%m-%d)"
             git push
           fi
