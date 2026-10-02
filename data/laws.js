@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-02",
- "from": "2026-09-29",
- "to": "2026-10-02",
+ "updated": "2026-10-03",
+ "from": "2026-09-30",
+ "to": "2026-10-03",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,11 +19,31 @@ window.LAW_DATA = {
    "field": "환경",
    "period": "2026. 9. 30. ~2026. 11. 9.",
    "start": "2026-09-30",
-   "remain": "38일",
+   "remain": "37일",
    "firstSeen": "2026-10-01"
   }
  ],
  "administrative": [
+  {
+   "title": "에코이노베이션 기술에 의한 자동차 온실가스 배출 저감 및 에너지소비 관련 개선 효과 인정 지침 일부개정예규안 행정예고",
+   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47478",
+   "ruleType": "지침",
+   "org": "기후에너지환경부",
+   "notice": "제2026-907호",
+   "period": "2026. 10. 2. ~ 2026. 10. 26.",
+   "start": "2026-10-02",
+   "firstSeen": "2026-10-03"
+  },
+  {
+   "title": "비점오염원 전문연구기관 지정 고시 제정안 행정예고",
+   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47476",
+   "ruleType": "고시",
+   "org": "기후에너지환경부",
+   "notice": "제2026-913호",
+   "period": "2026. 10. 2. ~ 2026. 10. 12.",
+   "start": "2026-10-02",
+   "firstSeen": "2026-10-03"
+  },
   {
    "title": "가습기살균제피해관리센터 피해자 지원 업무에 관한 고시 제정고시안 행정예고",
    "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47452",
@@ -32,16 +52,6 @@ window.LAW_DATA = {
    "notice": "제2026-904호",
    "period": "2026. 10. 1. ~ 2026. 10. 12.",
    "start": "2026-10-01",
-   "firstSeen": "2026-10-01"
-  },
-  {
-   "title": "지하수오염시설의 오염평가보고서 및 정화계획 작성 등에 관한 규정 제정안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47420",
-   "ruleType": "고시",
-   "org": "기후에너지환경부",
-   "notice": "제2026-896호",
-   "period": "2026. 9. 29. ~ 2026. 10. 20.",
-   "start": "2026-09-29",
    "firstSeen": "2026-10-01"
   }
  ],
@@ -71,7 +81,6 @@ window.LAW_DATA = {
    "promulgated": "2026-09-29",
    "effective": "2026-10-08",
    "tags": [
-    "공포",
     "시행예정"
    ],
    "firstSeen": "2026-10-01"
@@ -153,7 +162,7 @@ window.LAW_DATA = {
    "date": "2026-10-01",
    "number": "2026-19",
    "org": "화학물질안전원",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1942",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941",
    "firstSeen": "2026-10-02"
   },
   {
@@ -161,29 +170,37 @@ window.LAW_DATA = {
    "date": "2026-10-01",
    "number": "2026-247",
    "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941",
-   "firstSeen": "2026-10-02"
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940",
+   "firstSeen": "2026-10-01"
+  },
+  {
+   "title": "발전사업세부허가기준, 전기요금산정기준, 전력량계허용오차 및 전력계통운영업무에 관한 고시",
+   "date": "2026-10-01",
+   "number": "2026-241",
+   "org": "기후에너지환경부",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1939",
+   "firstSeen": "2026-10-01"
   },
   {
    "title": "해양환경ㆍ환경영향조사 및 환경성평가 등에 관한 규정",
    "date": "2026-09-30",
    "number": "2026-246,2026-111",
    "org": "기후에너지환경부,해양수산부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940",
-   "firstSeen": "2026-10-01"
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1938",
+   "firstSeen": "2026-10-03"
   },
   {
    "title": "2027년 바이오가스 민간의무생산자 고시",
    "date": "2026-09-30",
    "number": "2026-242",
    "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1939",
-   "firstSeen": "2026-10-01"
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1936",
+   "firstSeen": "2026-10-03"
   }
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 0,
+  "administrative": 2,
   "laws": 0,
   "rules": 2
  }
