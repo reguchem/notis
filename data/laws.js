@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-04",
- "from": "2026-10-01",
- "to": "2026-10-04",
+ "updated": "2026-10-05",
+ "from": "2026-10-02",
+ "to": "2026-10-05",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -30,16 +30,6 @@ window.LAW_DATA = {
    "period": "2026. 10. 2. ~ 2026. 10. 12.",
    "start": "2026-10-02",
    "firstSeen": "2026-10-03"
-  },
-  {
-   "title": "가습기살균제피해관리센터 피해자 지원 업무에 관한 고시 제정고시안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47452",
-   "ruleType": "고시",
-   "org": "기후에너지환경부",
-   "notice": "제2026-904호",
-   "period": "2026. 10. 1. ~ 2026. 10. 12.",
-   "start": "2026-10-01",
-   "firstSeen": "2026-10-01"
   }
  ],
  "laws": [
@@ -53,7 +43,6 @@ window.LAW_DATA = {
    "promulgated": "2026-10-01",
    "effective": "2026-10-02",
    "tags": [
-    "공포",
     "시행"
    ],
    "firstSeen": "2026-10-01"
@@ -143,24 +132,7 @@ window.LAW_DATA = {
    "firstSeen": "2026-10-01"
   }
  ],
- "rules": [
-  {
-   "title": "환경개선특별회계 등 융자금 지원조건",
-   "date": "2026-10-01",
-   "number": "2026-247",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941",
-   "firstSeen": "2026-10-02"
-  },
-  {
-   "title": "발전사업세부허가기준, 전기요금산정기준, 전력량계허용오차 및 전력계통운영업무에 관한 고시",
-   "date": "2026-10-01",
-   "number": "2026-241",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940",
-   "firstSeen": "2026-10-01"
-  }
- ],
+ "rules": [],
  "newCount": {
   "legislative": 0,
   "administrative": 0,
