@@ -1,28 +1,15 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-03",
- "from": "2026-09-30",
- "to": "2026-10-03",
+ "updated": "2026-10-04",
+ "from": "2026-10-01",
+ "to": "2026-10-04",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
   "화학물질안전원",
   "국립환경과학원"
  ],
- "legislative": [
-  {
-   "title": "환경분야 시험·검사 등에 관한 법률 시행규칙 일부개정령안 입법예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/88888",
-   "kind": "일부",
-   "org": "기후에너지환경부",
-   "lawType": "부령",
-   "field": "환경",
-   "period": "2026. 9. 30. ~2026. 11. 9.",
-   "start": "2026-09-30",
-   "remain": "37일",
-   "firstSeen": "2026-10-01"
-  }
- ],
+ "legislative": [],
  "administrative": [
   {
    "title": "에코이노베이션 기술에 의한 자동차 온실가스 배출 저감 및 에너지소비 관련 개선 효과 인정 지침 일부개정예규안 행정예고",
@@ -158,50 +145,26 @@ window.LAW_DATA = {
  ],
  "rules": [
   {
-   "title": "화학사고예방관리계획서 작성 등에 관한 규정",
-   "date": "2026-10-01",
-   "number": "2026-19",
-   "org": "화학물질안전원",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941",
-   "firstSeen": "2026-10-02"
-  },
-  {
    "title": "환경개선특별회계 등 융자금 지원조건",
    "date": "2026-10-01",
    "number": "2026-247",
    "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940",
-   "firstSeen": "2026-10-01"
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941",
+   "firstSeen": "2026-10-02"
   },
   {
    "title": "발전사업세부허가기준, 전기요금산정기준, 전력량계허용오차 및 전력계통운영업무에 관한 고시",
    "date": "2026-10-01",
    "number": "2026-241",
    "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1939",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940",
    "firstSeen": "2026-10-01"
-  },
-  {
-   "title": "해양환경ㆍ환경영향조사 및 환경성평가 등에 관한 규정",
-   "date": "2026-09-30",
-   "number": "2026-246,2026-111",
-   "org": "기후에너지환경부,해양수산부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1938",
-   "firstSeen": "2026-10-03"
-  },
-  {
-   "title": "2027년 바이오가스 민간의무생산자 고시",
-   "date": "2026-09-30",
-   "number": "2026-242",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1936",
-   "firstSeen": "2026-10-03"
   }
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 2,
+  "administrative": 0,
   "laws": 0,
-  "rules": 2
+  "rules": 0
  }
 };
