@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-08",
- "from": "2026-10-05",
- "to": "2026-10-08",
+ "updated": "2026-10-09",
+ "from": "2026-10-06",
+ "to": "2026-10-09",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -11,6 +11,16 @@ window.LAW_DATA = {
  ],
  "legislative": [],
  "administrative": [
+  {
+   "title": "수열에너지의 범위 지정에 관한 고시 제정안 행정예고",
+   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47502",
+   "ruleType": "고시",
+   "org": "기후에너지환경부",
+   "notice": "제2026-916호",
+   "period": "2026. 10. 8. ~ 2026. 10. 27.",
+   "start": "2026-10-08",
+   "firstSeen": "2026-10-09"
+  },
   {
    "title": "자동차 온실가스 전과정평가 방법에 관한 고시 제정안 행정예고",
    "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47458",
@@ -250,17 +260,25 @@ window.LAW_DATA = {
  ],
  "rules": [
   {
-   "title": "토양정화 검증방법에 관한 고시",
-   "date": "2026-10-07",
-   "number": "2026-243",
+   "title": "한국수자원조사기술원 운영 및 관리·감독에 관한 규정",
+   "date": "2026-10-08",
+   "number": "2026-252",
+   "org": "기후에너지환경부",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1943",
+   "firstSeen": "2026-10-09"
+  },
+  {
+   "title": "댐 상류의 범위에 관한 고시",
+   "date": "2026-10-08",
+   "number": "2026-250",
    "org": "기후에너지환경부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1942",
    "firstSeen": "2026-10-07"
   },
   {
-   "title": "전원개발사업 실시계획 변경 승인(강릉안인 1,2호기 건설사업)",
-   "date": "2026-10-06",
-   "number": "2026-248",
+   "title": "토양정화 검증방법에 관한 고시",
+   "date": "2026-10-07",
+   "number": "2026-243",
    "org": "기후에너지환경부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941",
    "firstSeen": "2026-10-07"
@@ -272,12 +290,20 @@ window.LAW_DATA = {
    "org": "기후에너지환경부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940",
    "firstSeen": "2026-10-08"
+  },
+  {
+   "title": "전원개발사업 실시계획 변경 승인(강릉안인 1,2호기 건설사업)",
+   "date": "2026-10-06",
+   "number": "2026-248",
+   "org": "기후에너지환경부",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1939",
+   "firstSeen": "2026-10-09"
   }
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 2,
-  "laws": 6,
-  "rules": 1
+  "administrative": 1,
+  "laws": 0,
+  "rules": 2
  }
 };
