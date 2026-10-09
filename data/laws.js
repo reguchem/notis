@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-09",
- "from": "2026-10-06",
- "to": "2026-10-09",
+ "updated": "2026-10-10",
+ "from": "2026-10-07",
+ "to": "2026-10-10",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -40,36 +40,6 @@ window.LAW_DATA = {
    "period": "2026. 10. 7. ~ 2026. 10. 25.",
    "start": "2026-10-07",
    "firstSeen": "2026-10-08"
-  },
-  {
-   "title": "석면해체작업감리인 평가 등에 관한 고시 일부개정고시안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47456",
-   "ruleType": "고시",
-   "org": "기후에너지환경부",
-   "notice": "제2026-878호",
-   "period": "2026. 10. 6. ~ 2026. 10. 26.",
-   "start": "2026-10-06",
-   "firstSeen": "2026-10-07"
-  },
-  {
-   "title": "석면해체작업감리인 기준 일부개정고시안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47486",
-   "ruleType": "고시",
-   "org": "기후에너지환경부",
-   "notice": "제2026-879호",
-   "period": "2026. 10. 6. ~ 2026. 10. 26.",
-   "start": "2026-10-06",
-   "firstSeen": "2026-10-07"
-  },
-  {
-   "title": "질병에 걸린 야생동물 신고제도 운영 및 포상금 지급에 관한 규정 고시 일부개정안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47484",
-   "ruleType": "고시",
-   "org": "기후에너지환경부",
-   "notice": "제2026-891호",
-   "period": "2026. 10. 6. ~ 2026. 10. 26.",
-   "start": "2026-10-06",
-   "firstSeen": "2026-10-07"
   }
  ],
  "laws": [
@@ -112,7 +82,6 @@ window.LAW_DATA = {
    "promulgated": "2026-10-06",
    "effective": "2026-10-08",
    "tags": [
-    "공포",
     "시행"
    ],
    "firstSeen": "2026-10-06"
@@ -274,36 +243,12 @@ window.LAW_DATA = {
    "org": "기후에너지환경부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1942",
    "firstSeen": "2026-10-07"
-  },
-  {
-   "title": "토양정화 검증방법에 관한 고시",
-   "date": "2026-10-07",
-   "number": "2026-243",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1941",
-   "firstSeen": "2026-10-07"
-  },
-  {
-   "title": "태양광 보급추진단 설치 및 운영에 관한 규정",
-   "date": "2026-10-06",
-   "number": "57",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1940",
-   "firstSeen": "2026-10-08"
-  },
-  {
-   "title": "전원개발사업 실시계획 변경 승인(강릉안인 1,2호기 건설사업)",
-   "date": "2026-10-06",
-   "number": "2026-248",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1939",
-   "firstSeen": "2026-10-09"
   }
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 1,
+  "administrative": 0,
   "laws": 0,
-  "rules": 2
+  "rules": 0
  }
 };
