@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-18",
- "from": "2026-10-15",
- "to": "2026-10-18",
+ "updated": "2026-10-19",
+ "from": "2026-10-16",
+ "to": "2026-10-19",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,20 +19,8 @@ window.LAW_DATA = {
    "field": "환경",
    "period": "2026. 10. 16. ~2026. 11. 25.",
    "start": "2026-10-16",
-   "remain": "38일",
+   "remain": "37일",
    "firstSeen": "2026-10-17"
-  },
-  {
-   "title": "전기공사업법 시행규칙 일부개정령안 입법예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/88990",
-   "kind": "일부",
-   "org": "기후에너지환경부",
-   "lawType": "부령",
-   "field": "전기ㆍ가스",
-   "period": "2026. 10. 15. ~2026. 11. 25.",
-   "start": "2026-10-15",
-   "remain": "38일",
-   "firstSeen": "2026-10-16"
   }
  ],
  "administrative": [
@@ -65,16 +53,6 @@ window.LAW_DATA = {
    "period": "2026. 10. 16. ~ 2026. 11. 5.",
    "start": "2026-10-16",
    "firstSeen": "2026-10-17"
-  },
-  {
-   "title": "화학물질의 유해성심사결과 일부개정안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47556",
-   "ruleType": "고시",
-   "org": "화학물질안전원",
-   "notice": "제2026-103호",
-   "period": "2026. 10. 15. ~ 2026. 11. 4.",
-   "start": "2026-10-15",
-   "firstSeen": "2026-10-16"
   }
  ],
  "laws": [
@@ -96,34 +74,26 @@ window.LAW_DATA = {
  ],
  "rules": [
   {
-   "title": "가습기살균제피해관리센터 피해자 지원 업무에 관한 고시",
+   "title": "지역균형발전특별회계 융자금 지원조건",
    "date": "2026-10-16",
-   "number": "2026-259",
+   "number": "2026-262",
    "org": "기후에너지환경부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1945",
    "firstSeen": "2026-10-17"
   },
   {
-   "title": "지역균형발전특별회계 융자금 지원조건",
+   "title": "가습기살균제피해관리센터 피해자 지원 업무에 관한 고시",
    "date": "2026-10-16",
-   "number": "2026-262",
+   "number": "2026-259",
    "org": "기후에너지환경부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1944",
    "firstSeen": "2026-10-18"
-  },
-  {
-   "title": "화학물질안전원 기본운영규정",
-   "date": "2026-10-15",
-   "number": "159",
-   "org": "화학물질안전원",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1943",
-   "firstSeen": "2026-10-14"
   }
  ],
  "newCount": {
   "legislative": 0,
   "administrative": 0,
   "laws": 0,
-  "rules": 1
+  "rules": 0
  }
 };
