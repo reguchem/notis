@@ -177,7 +177,7 @@ function telBlock(it){
 }
 function card(it){
   const st = STATUS[it.status];
-  const tags = [it.list, it.note].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  const tags = [it.list ? `기존화학물질 고시 ${it.list}` : '', it.note].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
   return `<article class="card"><div class="status ${st.cls}"><span class="dot"></span>${st.label}</div><div class="body">
     <p class="name">${esc(it.n||'-')}</p>
     <dl><dt>CAS 번호</dt><dd>${esc(it.casRaw||'-')}</dd><dt>고유번호</dt><dd>${esc(it.id.join(', ')||'-')}</dd>${tags?`<dt>구분</dt><dd>${tags}</dd>`:''}</dl>
