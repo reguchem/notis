@@ -48,6 +48,8 @@ body.has-result .quick{display:none}
 .name{font-size:18px;font-weight:700;line-height:1.4;word-break:break-word;margin:0 0 12px}
 dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;font-size:14px}
 dt{color:var(--muted)}dd{margin:0;word-break:break-all}
+.cmr-warn{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--warn-bg);color:var(--warn);font-size:14px;line-height:1.7}.cmr-warn strong{display:block;font-size:15px}
+dd .sub{display:block;font-size:12px;color:var(--muted);margin-top:2px;word-break:keep-all}
 .tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface2);color:var(--brand);margin-right:6px}
 .next{margin-top:18px;padding:16px 18px;border-radius:14px;background:var(--surface2);font-size:14px;line-height:1.7}
 .next strong{display:block;font-size:15px;margin-bottom:4px}
@@ -114,6 +116,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
 <script src="data/laws.js"></script>
 <script src="data/substances.js"></script>
 <script src="data/existing.js"></script>
+<script src="data/cmr.js"></script>
 <script>
 const DATA = window.SUBSTANCE_DATA || {items:[],asof:''};
 const EXIST = window.EXISTING_DATA || {lists:[]};
@@ -122,7 +125,7 @@ const STATUS = {
   late: {label:'기존화학물질 · 공동등록 완료 · 후발등록 대상', cls:'late',
     next:()=>'이미 공동등록이 완료된 물질입니다. 이 물질을 제조·수입하려면 기존 공동등록에 참여하는 <b>후발등록</b>을 진행해야 합니다. 아래 문의처로 연락해 참여 절차와 자료 사용 조건을 확인하세요.'},
   joint:{label:'기존화학물질 · 공동등록 진행 대상', cls:'joint',
-    next:it=>`기존화학물질 목록(${esc(it.list)})에 있고, 공동등록 완료 목록(기준일 ${esc(DATA.asof)})에는 없는 물질입니다. 등록하려면 같은 물질을 제조·수입하는 다른 사업자와 함께 <b>공동등록</b>을 진행해야 합니다. 아래 번호로 문의해 주세요.`},
+    next:it=>`${it.list?`기존화학물질 목록(기존화학물질 고시 ${esc(it.list)})에 있고,`:'등록대상 CMR물질 고시(안)에 포함된 기존화학물질로,'} 공동등록 완료 목록(기준일 ${esc(DATA.asof)})에는 없는 물질입니다. 등록하려면 같은 물질을 제조·수입하는 다른 사업자와 함께 <b>공동등록</b>을 진행해야 합니다. 아래 번호로 문의해 주세요.`},
   new:  {label:'신규화학물질', cls:'new',
     next:()=>'기존화학물질 목록(별표1·별표2)과 공동등록 완료 목록에 모두 없는 물질이므로 <b>신규화학물질</b>입니다. 등록서류를 <b>개별로</b> 준비해 제출해야 합니다. 번호가 정확한지 한 번 더 확인하신 뒤 아래 번호로 문의해 주세요.'}
 };
@@ -138,6 +141,9 @@ const existing = [];
 EXIST.lists.forEach(l=>l.rows.forEach(([id,n,cas])=>existing.push({id:[id], n, cas, casRaw:cas.join(', '), list:l.label, status:'joint'})));
 const idx = new Map(); const add=(k,it)=>{if(!k)return; if(!idx.has(k))idx.set(k,[]); idx.get(k).push(it)};
 const listOf = new Map();
+const CMR = window.CMR_DATA || {items:[]};
+const cmrByCas = new Map(); CMR.items.filter(c=>c.cas.length===1).forEach(c=>cmrByCas.set(casKey(c.cas[0]), c)); // 'A & B'처럼 여러 물질을 묶은 항목은 개별 CAS로 판정하지 않음
+const cmrOf = it => [...(it.cas||[]), it.casRaw].map(casKey).map(k=>cmrByCas.get(k)).find(Boolean);
 existing.forEach(it=>{it.id.forEach(id=>{add('I'+key(id),it); listOf.set(key(id),it.list)}); it.cas.forEach(c=>add('C'+casKey(c),it))});
 joint.forEach(it=>{it.id.forEach(id=>add('I'+key(id),it)); (it.cas.length?it.cas:[it.casRaw]).forEach(c=>add('C'+casKey(c),it)); it.list=it.id.map(id=>listOf.get(key(id))).filter(Boolean)[0]||''});
 
@@ -157,6 +163,10 @@ function uniq(arr){return [...new Set(arr)]}
 function search(raw){
   const q = raw.trim(); if(!q) return {type:'empty'};
   let hits = uniq([...(idx.get('I'+key(q))||[]), ...(idx.get('C'+casKey(q))||[])]);
+  if(!hits.length){
+    const c = cmrByCas.get(casKey(q));
+    if(c) hits = [{n:c.n, id:[], cas:c.cas, casRaw:c.casRaw, list:'', status:'joint'}];
+  }
   if(hits.length){
     const late = hits.filter(h=>h.status==='late');
     return {type:'hit', items: late.length ? late : hits};
@@ -177,11 +187,12 @@ function telBlock(it){
 }
 function card(it){
   const st = STATUS[it.status];
-  const tags = [it.list ? `기존화학물질 고시 ${it.list}` : '', it.note].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  const cmr = cmrOf(it);
+  const tags = [it.list ? `기존화학물질 고시 ${it.list}` : '', it.note, cmr ? '등록대상 CMR물질' : ''].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
   return `<article class="card"><div class="status ${st.cls}"><span class="dot"></span>${st.label}</div><div class="body">
     <p class="name">${esc(it.n||'-')}</p>
-    <dl><dt>CAS 번호</dt><dd>${esc(it.casRaw||'-')}</dd><dt>고유번호</dt><dd>${esc(it.id.join(', ')||'-')}</dd>${tags?`<dt>구분</dt><dd>${tags}</dd>`:''}</dl>
-    <div class="next"><strong>다음 단계</strong>${st.next(it)}${telBlock(it)}</div>
+    <dl><dt>CAS 번호</dt><dd>${esc(it.casRaw||'-')}</dd><dt>고유번호</dt><dd>${esc(it.id.join(', ')||'-')}</dd>${tags?`<dt>구분</dt><dd>${tags}</dd>`:''}${cmr?`<dt>CMR 고시</dt><dd>${esc(CMR.notice)} 별표 순번 ${cmr.no}<span class="sub">「${esc(CMR.title)}」</span></dd>`:''}</dl>
+    ${cmr?`<div class="cmr-warn"><strong>⚠ 등록대상 CMR물질</strong>이 물질의 등록 유예기간은 <b>2021년 12월 31일</b>에 종료되어, 현재는 유예기간이 없습니다. 제조·수입 전에 등록이 필요합니다.</div>`:''}<div class="next"><strong>다음 단계</strong>${st.next(it)}${telBlock(it)}</div>
   </div></article>`;
 }
 function render(res){

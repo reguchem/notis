@@ -3,8 +3,10 @@
 
 - 이름에 '대리인'이 들어간 파일: 공동등록 완료 물질 목록 → data/substances.js
   (2행 머리글: 화학물질명, 고유번호, CAS No., 등록 예정시 문의처, 비고, 컨설팅사 / 4행부터 자료)
+  ※ 첫 번째 시트만 사용합니다.
 - 이름이 '별표'로 시작하는 파일: 기존화학물질 목록(별표1, 별표2) → data/existing.js
   (열: 고유번호, '화학물질명 (CAS No. ...)')
+- 이름에 'CMR'이 들어간 PDF: 등록대상 CMR물질 고시(안) 별표 → data/cmr.js  (pdfplumber 필요)
 """
 import glob, json, os, re
 import openpyxl
@@ -33,7 +35,12 @@ if joint:
     src = sorted(joint)[-1]
     ws = openpyxl.load_workbook(src, read_only=True, data_only=True).worksheets[0]
     header = [s(c) for c in next(ws.iter_rows(min_row=2, max_row=2, values_only=True))]
-    col = {n: header.index(n) for n in ['화학물질명', '고유번호', 'CAS No.', '등록 예정시 문의처', '비고', '컨설팅사']}
+    def find(name):  # 머리글이 '컨설팅사(또는 대표자)'처럼 조금 달라도 찾습니다
+        for i, h in enumerate(header):
+            if h.replace(' ', '').startswith(name.replace(' ', '')):
+                return i
+        raise SystemExit(f'엑셀 머리글에서 "{name}" 열을 찾지 못했습니다: {header}')
+    col = {n: find(n) for n in ['화학물질명', '고유번호', 'CAS No.', '등록 예정시 문의처', '비고', '컨설팅사']}
     items = []
     for r in ws.iter_rows(min_row=4, values_only=True):
         name, ids, cas = s(r[col['화학물질명']]), s(r[col['고유번호']]), s(r[col['CAS No.']])
@@ -68,3 +75,26 @@ for src in sorted(f for f in xlsx if os.path.basename(f).startswith('별표')):
 if lists:
     write('existing.js', 'EXISTING_DATA', {'lists': lists})
     print(f'기존화학물질 합계 {total}건')
+
+# 3) 등록대상 CMR물질 고시(안) (PDF 표: 순번, 화학물질 명칭, 고유번호(CAS No.))
+cmr_pdf = [f for f in glob.glob(os.path.join(ROOT, '*.pdf')) if 'CMR' in os.path.basename(f).upper()]
+if cmr_pdf:
+    try:
+        import pdfplumber
+    except ImportError:
+        pdfplumber = None
+        print('pdfplumber가 없어 CMR 목록은 건너뜁니다 (pip install pdfplumber)')
+    if pdfplumber:
+        src = sorted(cmr_pdf)[-1]
+        rows = []
+        with pdfplumber.open(src) as pdf:
+            for page in pdf.pages:
+                for t in page.extract_tables():
+                    for r in t:
+                        if r and r[0] and re.fullmatch(r'\d+', r[0].strip()):
+                            name, cas = s(r[1]), s(r[2])
+                            rows.append({'no': int(r[0]), 'n': name, 'cas': ['-'.join(m) for m in CAS_RE.findall(cas)], 'casRaw': cas})
+        rows.sort(key=lambda x: x['no'])
+        write('cmr.js', 'CMR_DATA', {'title': '‘21년까지 등록하여야 할 암, 돌연변이, 생식능력 이상을 일으키거나 일으킬 우려가 있는 기존화학물질',
+                                     'notice': '환경부고시 제2018-232호(안)', 'source': os.path.basename(src), 'items': rows})
+        print(f'등록대상 CMR물질 {len(rows)}건 ← {os.path.basename(src)}')
