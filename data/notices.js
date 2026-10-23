@@ -1,15 +1,15 @@
 // 자동 생성 파일: tools/update_notices.py 가 매일 갱신합니다.
 window.NOTICE_DATA = {
- "updated": "2026-10-23",
- "from": "2026-09-23",
- "to": "2026-10-23",
- "newCount": 1,
+ "updated": "2026-10-24",
+ "from": "2026-09-24",
+ "to": "2026-10-24",
+ "newCount": 0,
  "items": [
   {
    "idx": "83183",
    "title": "[2026년 산업계 대상 화평법 이행 교육 안내(11,12월)]",
    "date": "2026-10-22",
-   "views": 66,
+   "views": 135,
    "pinned": true,
    "file": false,
    "summary": "- 신청링크: https://forms.gle/DxSTZa4TNHUjEzAy8\n- 전체 교육일정 링크: https://www.sheschem.com/newsletter/20260518/k-reach-curriculum_20260518-1.html\n- 참석자 확정안내 링크: https://docs.google.com/spreadsheets/d/1GEgrt2EfyBgB95jCyPDMgRSMPD9DGWhtkDtyhmV3Nmw/edit?usp=sharing",
@@ -19,7 +19,7 @@ window.NOTICE_DATA = {
    "idx": "83168",
    "title": "「화학물질의 등록 및 평가 등에 관한 법률」 시행규칙 제27조의3제3항에 따른 적정성검토 통지결과 확인 요청",
    "date": "2026-10-20",
-   "views": 284,
+   "views": 364,
    "pinned": true,
    "file": true,
    "summary": "「화학물질등록평가법」(이하 화평법) 시행규칙 제27조의3제3항에 따라, 공단은 화평법 제19조의3제1항에 따른 적정성검토 결과를 신고인에게 알려야 합니다.\n이에 따라 화학물질정보처리시스템에 등록된 신고업체의 대표 및 신청인(법 제38조에 따라 선임된 자 포함) 이메일로 안내 드리오니, 신고건의 적정성검토 결과를 확인하시기 바랍니다.\n1. 적정성검토란, 국내외 관련 심사·평가·시험 등의 Reference Database(이하 R-DB) 결과를 조사하여 기업이 신고한 화학물질의 유해성 분류 및 표시를 확인\n2. 적정성검토 통지 대상…",
@@ -29,7 +29,7 @@ window.NOTICE_DATA = {
    "idx": "83165",
    "title": "[화학안전주간] 제 7회 화학안전주간 사진 공모전 안내",
    "date": "2026-10-19",
-   "views": 96,
+   "views": 115,
    "pinned": true,
    "file": true,
    "summary": "제 7회 화학안전주간을 맞아 일상 속 화학안전 실천문화 확산은 물론, 일터나 산업현장의 화학안전 실천문화 확산을 위해,\n「화학안전 실천의 순간 사진공모전」을 다음과 같이 개최하오니\n여러분의 많은 참여 부탁드립니다.\n[ 공모전 접수 바로가기 ]\n제7회 화학안전주간 사진 공모전\n*자세한 내용은 공모전 홈페이지를 참고히여 주시기 바랍니다.\n[ 문의처 ]\n공모전 운영사무국 T. 070-4647-4063 E. eventtube6@gmail.com",
