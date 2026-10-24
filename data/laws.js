@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-24",
- "from": "2026-10-21",
- "to": "2026-10-24",
+ "updated": "2026-10-25",
+ "from": "2026-10-22",
+ "to": "2026-10-25",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,31 +19,7 @@ window.LAW_DATA = {
    "field": "전기ㆍ가스",
    "period": "2026. 10. 22. ~2026. 12. 1.",
    "start": "2026-10-22",
-   "remain": "38일",
-   "firstSeen": "2026-10-23"
-  },
-  {
-   "title": "이산화탄소 포집ㆍ수송ㆍ저장 및 활용에 관한 법률 시행령 일부개정령안 입법예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/89114",
-   "kind": "일부",
-   "org": "기후에너지환경부",
-   "lawType": "대통령령",
-   "field": "환경",
-   "period": "2026. 10. 21. ~2026. 11. 30.",
-   "start": "2026-10-21",
    "remain": "37일",
-   "firstSeen": "2026-10-23"
-  },
-  {
-   "title": "기후에너지환경부와 그 소속기관 직제 시행규칙 일부개정령안 입법예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/89072",
-   "kind": "일부",
-   "org": "기후에너지환경부",
-   "lawType": "부령",
-   "field": "환경",
-   "period": "2026. 10. 21. ~2026. 10. 28.",
-   "start": "2026-10-21",
-   "remain": "4일",
    "firstSeen": "2026-10-23"
   }
  ],
@@ -80,20 +56,11 @@ window.LAW_DATA = {
   }
  ],
  "laws": [],
- "rules": [
-  {
-   "title": "수자원위성 관측망의 구축 사업 위탁기관 지정",
-   "date": "2026-10-21",
-   "number": "2026-263",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1946",
-   "firstSeen": "2026-10-24"
-  }
- ],
+ "rules": [],
  "newCount": {
   "legislative": 0,
   "administrative": 0,
   "laws": 0,
-  "rules": 1
+  "rules": 0
  }
 };
