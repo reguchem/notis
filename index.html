@@ -55,6 +55,7 @@ dd .sub{display:block;font-size:12px;color:var(--muted);margin-top:2px;word-brea
 .next strong{display:block;font-size:15px;margin-bottom:4px}
 .contact{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:10px}
 .tel{display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:700;text-decoration:none;background:var(--surface);border:1px solid var(--line);padding:9px 16px;border-radius:12px}
+.dl{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;text-decoration:none;color:#fff;background:var(--brand-strong);padding:11px 15px;border-radius:12px}.dl:hover{filter:brightness(1.12)}.dl:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .org{font-size:14px;color:var(--muted)}
 .list-head{font-size:14px;color:var(--muted);margin:0 0 10px}
 .pick{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:8px;cursor:pointer;color:var(--text);font:inherit}
@@ -179,11 +180,22 @@ function search(raw){
   return {type:'new', q};
 }
 
+// 참조권 구매신청서 다운로드 (CAS 번호 → forms 폴더의 PDF). 여기에 등록된 물질만 버튼이 나옵니다.
+const FORMS = {
+  // '111-46-6': 'forms/111-46-6_참조권 구매신청서.pdf',
+  // '1317-38-0': 'forms/1317-38-0_참조권 구매신청서.pdf',
+};
+function formBtn(it){
+  const c = [...(it.cas||[]), it.casRaw].map(casKey).find(k => Object.keys(FORMS).some(f => casKey(f)===k));
+  if(!c) return '';
+  const path = FORMS[Object.keys(FORMS).find(f => casKey(f)===c)];
+  return `<a class="dl" href="${esc(encodeURI(path))}" download="${esc(path.split('/').pop())}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>참조권 구매신청서</a>`;
+}
 function telBlock(it){
   if(it.status!=='late') return `<div class="contact"><a class="tel" href="${CONTACT.href}">☎ ${CONTACT.tel}</a></div>`;
   const d = (it.tel.match(/[\d-]{7,}/)||[''])[0];
   if(!it.tel && !it.org) return `<div class="contact"><a class="tel" href="${CONTACT.href}">☎ ${CONTACT.tel}</a><span class="org">등록된 대리인 문의처가 없어 대표번호를 안내합니다.</span></div>`;
-  return `<div class="contact">${it.tel?(d?`<a class="tel" href="tel:${esc(d.replace(/-/g,''))}">☎ ${esc(it.tel)}</a>`:`<span class="tel">${esc(it.tel)}</span>`):''}${it.org?`<span class="org">담당 대리인 · ${esc(it.org)}</span>`:''}</div>`;
+  return `<div class="contact">${it.tel?(d?`<a class="tel" href="tel:${esc(d.replace(/-/g,''))}">☎ ${esc(it.tel)}</a>`:`<span class="tel">${esc(it.tel)}</span>`):''}${formBtn(it)}${it.org?`<span class="org">담당 대리인 · ${esc(it.org)}</span>`:''}</div>`;
 }
 function card(it){
   const st = STATUS[it.status];

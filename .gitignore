@@ -1,5 +1,7 @@
 *.xlsx
 *.pdf
+!forms/*.pdf
 __pycache__/
 참조권 구매신청서/
 참조권 구매신청서_CAS별 최신/
+Claude outputs/
