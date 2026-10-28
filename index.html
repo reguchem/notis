@@ -61,10 +61,32 @@ dd .sub{display:block;font-size:12px;color:var(--muted);margin-top:2px;word-brea
 .qbox{width:min(760px,100%);background:var(--surface);color:var(--text);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.3);padding:22px 24px 24px}
 .qhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.qhead h2{margin:0;font-size:20px}
 .qclose{border:0;background:none;font-size:26px;line-height:1;color:var(--muted);cursor:pointer}
-.qform{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 14px;margin-bottom:18px}
-.qform label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:700;color:var(--muted)}
-.qform small{font-weight:400}
-.qform select,.qform input{font:inherit;font-size:15px;color:var(--text);background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:9px 10px}
+form.qstep,div.qstep{display:block}.qstep[hidden]{display:none!important}
+.qmodal input{flex:none}
+.qsteps{display:flex;gap:6px;list-style:none;padding:0;margin:0 0 16px;font-size:13px;font-weight:700;color:var(--muted)}
+.qsteps li{flex:1;text-align:center;padding:8px 4px;border-radius:999px;background:var(--surface2)}
+.qsteps li.on{background:var(--brand-strong);color:#fff}
+.qlead{margin:0 0 12px;font-size:14px;color:var(--muted)}.req{color:#d6453d}
+.qgrid{display:grid;grid-template-columns:120px 1fr;border-top:2px solid var(--brand);border-bottom:2px solid var(--brand)}
+.qgrid label{display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;font-weight:700;padding:12px 8px;line-height:1.35}
+.qgrid label:nth-of-type(even),.qgrid label:nth-of-type(even)+input{background:var(--accent-bg)}
+.qgrid input{flex:none;width:100%;box-sizing:border-box;font:inherit;font-size:15px;color:var(--text);background:transparent;border:0;border-left:1px solid var(--line);padding:12px 14px;min-width:0}
+.qgrid input:focus{outline:2px solid var(--focus);outline-offset:-2px}
+.qgrid input[readonly]{color:var(--muted)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.qconsent-box{margin-top:14px;font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.qconsent-box summary{cursor:pointer;font-weight:700;color:var(--text)}.qconsent-box ul{margin:8px 0 0;padding-left:18px;line-height:1.7}
+.qcheck{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;font-weight:700}.qcheck input{width:18px;height:18px;padding:0;margin:0}
+.qerr{min-height:1.4em;margin:10px 0 0;color:#d6453d;font-size:13px;font-weight:700}
+.qradio{border:0;padding:0;margin:0 0 18px}.qradio legend{font-size:15px;font-weight:700;margin-bottom:8px}
+.qradio>div{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.qradio label{position:relative;cursor:pointer}
+.qradio input{position:absolute;opacity:0;inset:0}
+.qradio span{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px;border:1px solid var(--line);border-radius:12px;font-size:14px;text-align:center}
+.qradio span::before{content:"";width:22px;height:22px;border-radius:50%;border:2px solid var(--brand);box-sizing:border-box}
+.qradio input:checked+span{border-color:var(--brand);background:var(--accent-bg);font-weight:700}
+.qradio input:checked+span::before{background:radial-gradient(circle,var(--brand) 0 5px,transparent 6px)}
+.qradio input:focus-visible+span{outline:2px solid var(--focus);outline-offset:2px}
 .qsheet{border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px}
 .qsheet h3{text-align:center;letter-spacing:12px;font-size:20px;margin:0 0 12px}
 .qmeta{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;font-size:13px;margin-bottom:12px}
@@ -77,8 +99,8 @@ dd .sub{display:block;font-size:12px;color:var(--muted);margin-top:2px;word-brea
 .qwarn{padding:12px 14px;border-radius:10px;background:var(--warn-bg);color:var(--warn);font-size:14px}
 .qactions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
 .qsecondary{font:inherit;font-size:14px;font-weight:700;border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:12px;padding:11px 15px;cursor:pointer}
-@media(max-width:560px){.qform{grid-template-columns:1fr}.qmeta{grid-template-columns:1fr}.qtable{font-size:12px}}
-@media print{body>*:not(.qmodal){display:none!important}.qmodal{position:static;background:none;padding:0}.qbox{box-shadow:none;padding:0;width:100%}.qhead,.qform,.qactions{display:none!important}.qsheet{border:0}}
+@media(max-width:560px){.qgrid{grid-template-columns:92px 1fr}.qradio>div{grid-template-columns:repeat(2,1fr)}.qmeta{grid-template-columns:1fr}.qtable{font-size:12px}.qsteps{font-size:12px}}
+@media print{body>*:not(.qmodal){display:none!important}.qmodal{position:static;background:none;padding:0}.qbox{box-shadow:none;padding:0;width:100%}.qhead,.qsteps,.qactions,#qStep1,#qStep2{display:none!important}.qsheet{border:0}}
 .dl{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;text-decoration:none;color:#fff;background:var(--brand-strong);padding:11px 15px;border-radius:12px}.dl:hover{filter:brightness(1.12)}.dl:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .org{font-size:14px;color:var(--muted)}
 .list-head{font-size:14px;color:var(--muted);margin:0 0 10px}
@@ -127,16 +149,55 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
 <div class="qmodal" id="qModal" hidden>
   <div class="qbox" role="dialog" aria-modal="true" aria-labelledby="qTitle">
     <div class="qhead"><h2 id="qTitle">견적 산출</h2><button type="button" class="qclose" id="qClose" aria-label="닫기">×</button></div>
-    <div class="qform">
-      <label>등록희망톤수<select id="qTon"></select></label>
-      <label>용도 수<select id="qUse"><option value="1">1개(기본)</option><option value="2">2개</option><option value="3">3개</option><option value="4">4개</option></select></label>
-      <label>기업규모<select id="qSize"><option value="0">대기업</option><option value="1">중견기업</option><option value="2">중소기업(중)</option><option value="3">중소기업(소)</option></select></label>
-      <label>별지 26호 서식작성 의뢰<select id="qForm26"><option value="0">아니오</option><option value="1">예</option></select></label>
-      <label>의뢰기관 <small>(선택, 견적서 표시용)</small><input id="qOrg" type="text" autocomplete="organization"></label>
-      <label>의뢰자 <small>(선택)</small><input id="qName" type="text" autocomplete="name"></label>
+    <ol class="qsteps" aria-label="진행 단계"><li data-s="1">① 직접입력</li><li data-s="2">② 선택입력</li><li data-s="3">③ 견적서</li></ol>
+
+    <form id="qStep1" class="qstep" novalidate>
+      <p class="qlead">견적서를 받으실 분의 정보를 입력해 주세요. <span class="req">*</span> 표시는 필수입니다.</p>
+      <div class="qgrid">
+        <label for="qOrg">의뢰기관 <span class="req">*</span></label><input id="qOrg" name="org" type="text" autocomplete="organization" maxlength="100" required>
+        <label for="qName">의뢰자 <span class="req">*</span></label><input id="qName" name="name" type="text" autocomplete="name" maxlength="50" required>
+        <label for="qEmail">이메일 <span class="req">*</span></label><input id="qEmail" name="email" type="email" autocomplete="email" maxlength="100" required>
+        <label for="qTel">연락처 <span class="req">*</span></label><input id="qTel" name="tel" type="tel" autocomplete="tel" maxlength="30" placeholder="010-0000-0000" required>
+        <label for="qCas">CAS 번호<br>KE 번호</label><input id="qCas" name="cas" type="text" readonly>
+      </div>
+      <input type="text" name="website" id="qHp" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+      <details class="qconsent-box"><summary>개인정보 수집·이용 안내</summary>
+        <ul>
+          <li><b>수집 항목</b>: 의뢰기관, 의뢰자, 이메일, 연락처, 문의 물질(CAS·KE 번호), 선택한 견적 조건</li>
+          <li><b>이용 목적</b>: 참조권 구매 및 등록 견적 안내, 상담 연락</li>
+          <li><b>보유 기간</b>: 동의일로부터 <b>1년</b> 보관 후 파기</li>
+          <li>동의를 거부할 수 있으며, 거부하면 견적 산출을 이용할 수 없습니다.</li>
+        </ul>
+      </details>
+      <label class="qcheck"><input type="checkbox" id="qAgree" required> 개인정보 수집·이용에 동의합니다. <span class="req">*</span></label>
+      <p class="qerr" id="qErr1" role="alert"></p>
+      <div class="qactions"><button type="submit" class="dl">제출</button></div>
+    </form>
+
+    <form id="qStep2" class="qstep" novalidate hidden>
+      <p class="qlead">견적 조건을 선택해 주세요. 모든 항목을 선택해야 합니다.</p>
+      <fieldset class="qradio"><legend>등록희망톤수</legend><div id="qTonOpts"></div></fieldset>
+      <fieldset class="qradio"><legend>별지 26호 의뢰 여부</legend><div>
+        <label><input type="radio" name="f26" value="1" required><span>예</span></label>
+        <label><input type="radio" name="f26" value="0"><span>아니오</span></label></div></fieldset>
+      <fieldset class="qradio"><legend>기업규모</legend><div>
+        <label><input type="radio" name="size" value="0" required><span>대기업</span></label>
+        <label><input type="radio" name="size" value="1"><span>중견기업</span></label>
+        <label><input type="radio" name="size" value="2"><span>중소(중기업)</span></label>
+        <label><input type="radio" name="size" value="3"><span>중소(소기업)</span></label></div></fieldset>
+      <fieldset class="qradio"><legend>등록희망 용도수</legend><div>
+        <label><input type="radio" name="use" value="1" required><span>1개(기본)</span></label>
+        <label><input type="radio" name="use" value="2"><span>2개</span></label>
+        <label><input type="radio" name="use" value="3"><span>3개</span></label>
+        <label><input type="radio" name="use" value="4"><span>4개</span></label></div></fieldset>
+      <p class="qerr" id="qErr2" role="alert"></p>
+      <div class="qactions"><button type="button" class="qsecondary" id="qBack">이전</button><button type="submit" class="dl">제출</button></div>
+    </form>
+
+    <div id="qStep3" class="qstep" hidden>
+      <div id="quotePrint"></div>
+      <div class="qactions"><button type="button" class="qsecondary" id="qReselect">조건 다시 선택</button><button type="button" class="dl" id="qPrint">인쇄 · PDF 저장</button><button type="button" class="qsecondary" id="qClose2">닫기</button></div>
     </div>
-    <div id="quotePrint"></div>
-    <div class="qactions"><button type="button" class="dl" id="qPrint">인쇄 · PDF 저장</button><button type="button" class="qsecondary" id="qClose2">닫기</button></div>
   </div>
 </div>
 <footer>
@@ -202,20 +263,27 @@ function uniq(arr){return [...new Set(arr)]}
   if (L) { const ks = ['legislative','administrative','laws','rules']; const total = ks.reduce((a,k)=>a+(L[k]||[]).length,0); setNew('qLawNew', ks.reduce((a,k)=>a+(L[k]||[]).filter(x => isNew(x, L)).length,0)); $('qLawSub').textContent = `최근 3일 ${total}건`; }
 })();
 
-// 견적 산출 계산 (견적산출.xlsx '견적서(출력)' 시트와 같은 방식)
+// 견적 산출 (① 직접입력 → ② 선택입력 → ③ 견적서). 계산은 견적산출.xlsx '견적서(출력)' 시트와 같은 방식
+// 직접입력 내용은 Google 스프레드시트(Apps Script 웹 앱)로 보냅니다. 배포 후 받은 웹 앱 주소를 아래에 넣으세요.
+const LEAD_ENDPOINT = '';
 window.addEventListener('DOMContentLoaded', function(){
   const m = $('qModal'); if(!m) return;
   const won = n => Math.round(n).toLocaleString('ko-KR');
-  const FEE = [200000,200000,100000,50000];
-  let cur = null;
-  (QUOTE.tonnage||[]).forEach((t,i)=>$('qTon').insertAdjacentHTML('beforeend',`<option value="${i}">${esc(t)}</option>`));
-  function calc(){
-    const q = QUOTE.substances[cur]; if(!q) return;
-    const t = +$('qTon').value, n = +$('qUse').value, f26 = $('qForm26').value==='1', size = +$('qSize').value;
+  const FEE = [200000,200000,100000,50000], SIZE = ['대기업','중견기업','중소(중기업)','중소(소기업)'];
+  let cur = null, reqId = '', lead = {};
+  $('qTonOpts').innerHTML = (QUOTE.tonnage||[]).map((t,i)=>`<label><input type="radio" name="ton" value="${i}" ${i?'':'required'}><span>${esc(t)}</span></label>`).join('');
+  const send = data => { if(!LEAD_ENDPOINT) { console.warn('LEAD_ENDPOINT가 비어 있어 입력 정보가 저장되지 않았습니다.'); return; }
+    try { fetch(LEAD_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(data), keepalive:true}); } catch(e) { console.warn(e); } };
+  function step(n){ [1,2,3].forEach(i => $('qStep'+i).hidden = i!==n); m.querySelectorAll('.qsteps li').forEach(li => li.classList.toggle('on', +li.dataset.s===n)); m.querySelector('.qbox').scrollTop = 0; m.scrollTop = 0;
+    const f = $('qStep'+n).querySelector('input:not([readonly]):not(.hp), button'); if(f) f.focus(); }
+  function quote(sel){
+    const q = QUOTE.substances[cur]; if(!q) return '';
+    const {t, n, f26, size} = sel;
     const v = k => (q.items[k]||{v:[]}).v[t];
     const sold = QUOTE.items.every(k => v(k)!==null && v(k)!==undefined);
     const curcy = q.testCurrency || 'KRW';
     const rate = curcy==='KRW' ? 1 : ((QUOTE.rates[curcy]||{}).send||0) + 50;
+    if(!sold) return {html:`<div class="qwarn">선택한 톤수구간(${esc(QUOTE.tonnage[t])})은 참조권을 판매하지 않습니다.</div>`, total:null};
     const rows = [
       ['grp','1. 컨설팅 비용'],
       ['1.1.','개별서류 작성 컨설팅', v('개별서류 작성 컨설팅'), 1],
@@ -232,22 +300,43 @@ window.addEventListener('DOMContentLoaded', function(){
     ];
     const total = rows.filter(r=>r[0]!=='grp').reduce((a,r)=>a+(r[2]||0)*r[3],0);
     const today = new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
-    const org = $('qOrg').value.trim(), name = $('qName').value.trim();
     const rateNote = curcy!=='KRW' && QUOTE.rates[curcy] ? `<br>※ 시험자료 참조권은 ${esc(curcy)} 송금 환율 ${QUOTE.rates[curcy].send.toLocaleString()}원(${esc(QUOTE.rates[curcy].date)} 기준)에 50원을 더한 환율로 환산했습니다. 의뢰자가 직접 송금할 수도 있습니다.` : '';
-    $('quotePrint').innerHTML = !sold
-      ? `<div class="qwarn">선택한 톤수구간(${esc(QUOTE.tonnage[t])})은 참조권을 판매하지 않습니다.</div>`
-      : `<div class="qsheet"><h3>견적서</h3>
-        <div class="qmeta"><div>${org?esc(org)+' 귀중':''}${name?`<br>${esc(name)} 님 귀하`:''}</div><div>견적일자: ${today}<br>견적유효기간: 유효하지 않음(참고용)</div>
-        <div>CAS No.: <b>${esc(cur)}</b> ${esc(q.name)}</div><div>등록희망톤수: <b>${esc(QUOTE.tonnage[t])}</b> · 용도 ${n}개</div></div>
-        <table class="qtable"><thead><tr><th>구분</th><th>단가(원)</th><th>건수</th><th>금액(원)</th></tr></thead><tbody>
-        ${rows.map(r=>r[0]==='grp'?`<tr class="grp"><td colspan="4">${r[1]}</td></tr>`:`<tr><td class="l">${r[0]} ${r[1]}</td><td>${won(r[2]||0)}</td><td>${r[3]}</td><td>${won((r[2]||0)*r[3])}</td></tr>`).join('')}
-        <tr class="tot"><td class="l">총계 (VAT 별도)</td><td colspan="3">${won(total)}원</td></tr></tbody></table>
-        <p class="qnote">※ 본 견적은 웹페이지에서 제공되는 견적으로, 업로드 시기에 따라 현 시점 실제 견적 비용과 차이가 있을 수 있습니다. 대략적인 비용 확인을 위한 참고용이며, 웹페이지에서 확인한 것만으로 견적이 발행된 것으로 보지 않습니다. 등록을 희망하시는 물질과 톤수, 용도 수를 적어 <a href="mailto:kreach@to21.co.kr">kreach@to21.co.kr</a>로 문의해 주시기 바랍니다.<br>※ CSR 노출평가 컨설팅은 용도당 비용이며, 소비자 용도는 용도당 100만원이 추가되고 제조는 등록하려는 용도로 간주합니다.${rateNote}</p>
-        <p class="qnote">티오이십일 화학규제본부 · 06631 서울특별시 서초구 서초대로 350, 2층(서초동, 동아빌라트2단지) · Tel 02-6005-1200 · Fax 02-6005-1299</p></div>`;
+    return {total, html:`<div class="qsheet"><h3>견적서</h3>
+      <div class="qmeta"><div><b>${esc(lead.org)}</b> 귀중<br>${esc(lead.name)} 님 귀하</div><div>견적일자: ${today}<br>견적유효기간: 유효하지 않음(참고용)</div>
+      <div>CAS No.: <b>${esc(cur)}</b> ${esc(q.name)}</div><div>등록희망톤수: <b>${esc(QUOTE.tonnage[t])}</b> · 용도 ${n}개 · ${SIZE[size]} · 별지 26호 ${f26?'의뢰':'미의뢰'}</div></div>
+      <table class="qtable"><thead><tr><th>구분</th><th>단가(원)</th><th>건수</th><th>금액(원)</th></tr></thead><tbody>
+      ${rows.map(r=>r[0]==='grp'?`<tr class="grp"><td colspan="4">${r[1]}</td></tr>`:`<tr><td class="l">${r[0]} ${r[1]}</td><td>${won(r[2]||0)}</td><td>${r[3]}</td><td>${won((r[2]||0)*r[3])}</td></tr>`).join('')}
+      <tr class="tot"><td class="l">총계 (VAT 별도)</td><td colspan="3">${won(total)}원</td></tr></tbody></table>
+      <p class="qnote">※ 본 견적은 웹페이지에서 제공되는 견적으로, 업로드 시기에 따라 현 시점 실제 견적 비용과 차이가 있을 수 있습니다. 대략적인 비용 확인을 위한 참고용이며, 웹페이지에서 확인한 것만으로 견적이 발행된 것으로 보지 않습니다. 등록을 희망하시는 물질과 톤수, 용도 수를 적어 <a href="mailto:kreach@to21.co.kr">kreach@to21.co.kr</a>로 문의해 주시기 바랍니다.<br>※ CSR 노출평가 컨설팅은 용도당 비용이며, 소비자 용도는 용도당 100만원이 추가되고 제조는 등록하려는 용도로 간주합니다.${rateNote}</p>
+      <p class="qnote">티오이십일 화학규제본부 · 06631 서울특별시 서초구 서초대로 350, 2층(서초동, 동아빌라트2단지) · Tel 02-6005-1200 · Fax 02-6005-1299</p></div>`};
   }
-  const open = c => { cur = c; m.hidden = false; document.body.style.overflow='hidden'; calc(); $('qTon').focus(); };
+  const open = c => { cur = c; const q = QUOTE.substances[c]; const ke = ((joint.find(j => j.cas.some(x => casKey(x)===casKey(c)))||{}).id||[]).join(', '); $('qCas').value = c + (ke ? ` / ${ke}` : ''); $('qErr1').textContent=''; $('qErr2').textContent='';
+    m.hidden = false; document.body.style.overflow='hidden'; step(lead.org ? 2 : 1); };
   const close = () => { m.hidden = true; document.body.style.overflow=''; };
-  ['qTon','qUse','qSize','qForm26','qOrg','qName'].forEach(id => $(id).addEventListener(id.startsWith('qO')||id==='qName'?'input':'change', calc));
+  $('qStep1').addEventListener('submit', e => { e.preventDefault();
+    const f = e.target, val = id => $(id).value.trim();
+    const err = !val('qOrg') ? '의뢰기관을 입력해 주세요.' : !val('qName') ? '의뢰자를 입력해 주세요.'
+      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('qEmail')) ? '이메일 주소를 확인해 주세요.'
+      : (val('qTel').replace(/\D/g,'').length < 8) ? '연락처를 확인해 주세요.'
+      : !$('qAgree').checked ? '개인정보 수집·이용에 동의해 주세요.' : '';
+    $('qErr1').textContent = err; if(err) return;
+    if($('qHp').value) { step(2); return; }   // 자동 입력 방지
+    lead = {org: val('qOrg'), name: val('qName'), email: val('qEmail'), tel: val('qTel')};
+    reqId = Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+    send({type:'lead', id:reqId, ...lead, cas:$('qCas').value, substance:(QUOTE.substances[cur]||{}).name||'', consent:'동의', page:location.href});
+    step(2);
+  });
+  $('qStep2').addEventListener('submit', e => { e.preventDefault();
+    const g = n => (e.target.querySelector(`input[name="${n}"]:checked`)||{}).value;
+    const sel = {t:g('ton'), f26:g('f26'), size:g('size'), n:g('use')};
+    const miss = [['t','등록희망톤수'],['f26','별지 26호 의뢰 여부'],['size','기업규모'],['n','등록희망 용도수']].filter(([k])=>sel[k]===undefined).map(([,l])=>l);
+    $('qErr2').textContent = miss.length ? `${miss.join(', ')}을(를) 선택해 주세요.` : ''; if(miss.length) return;
+    sel.t=+sel.t; sel.f26=sel.f26==='1'; sel.size=+sel.size; sel.n=+sel.n;
+    const r = quote(sel); $('quotePrint').innerHTML = r.html;
+    send({type:'quote', id:reqId, cas:$('qCas').value, ton:QUOTE.tonnage[sel.t], form26:sel.f26?'예':'아니오', size:SIZE[sel.size], uses:sel.n+'개', total:r.total});
+    step(3);
+  });
+  $('qBack').onclick = () => step(1); $('qReselect').onclick = () => step(2);
   $('qClose').onclick = close; $('qClose2').onclick = close; $('qPrint').onclick = () => window.print();
   m.addEventListener('click', e => { if(e.target===m) close(); });
   document.addEventListener('keydown', e => { if(e.key==='Escape' && !m.hidden) close(); });
