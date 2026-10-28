@@ -98,3 +98,34 @@ if cmr_pdf:
         write('cmr.js', 'CMR_DATA', {'title': '‘21년까지 등록하여야 할 암, 돌연변이, 생식능력 이상을 일으키거나 일으킬 우려가 있는 기존화학물질',
                                      'notice': '환경부고시 제2018-232호(안)', 'source': os.path.basename(src), 'items': rows})
         print(f'등록대상 CMR물질 {len(rows)}건 ← {os.path.basename(src)}')
+
+# 4) 견적 산출 (견적산출.xlsx의 '톤수별 견적', '현재환율' 시트) → data/quotes.js
+#    공개 범위를 좁히기 위해 QUOTE_CAS에 적은 물질만 내보냅니다.
+QUOTE_CAS = ['1317-38-0']
+ITEMS = ['개별서류 작성 컨설팅', 'CSR 노출평가 컨설팅', '별지 26호 서식작성 컨설팅', '등록행정수수료', '협의체 참조권',
+         'CSR 유해성평가 참조권', '시험자료 참조권', '정부생산자료 참조권', '기타 참조권']
+qx = sorted(glob.glob(os.path.join(ROOT, '**', '견적산출*.xlsx'), recursive=True))
+qx = [f for f in qx if not os.path.basename(f).startswith('~$')]
+if qx:
+    src = qx[-1]
+    wb = openpyxl.load_workbook(src, data_only=True)
+    ws = wb['톤수별 견적']
+    rates = {}
+    for r in wb['현재환율'].iter_rows(min_row=2, values_only=True):
+        if r and r[0] and r[2]:
+            rates[str(r[0]).strip()] = {'send': float(r[2]), 'date': r[4].strftime('%Y-%m-%d') if hasattr(r[4], 'strftime') else s(r[4])}
+    subs = {}
+    rows = list(ws.iter_rows(values_only=True))
+    for i, r in enumerate(rows):
+        if r[0] == '물질정보' and s(r[2]) in QUOTE_CAS:
+            cas, name = s(r[2]), s(r[5])
+            block = {}
+            for r2 in rows[i + 3:i + 13]:
+                if r2[0] in ITEMS:
+                    vals = [v if isinstance(v, (int, float)) else None for v in r2[1:5]]
+                    block[r2[0]] = {'v': vals, 'note': s(r2[5]), 'sel': s(r2[7])}
+            subs[cas] = {'name': name, 'items': block, 'testCurrency': block.get('시험자료 참조권', {}).get('sel') or 'KRW',
+                         'carcinogen': block.get('CSR 노출평가 컨설팅', {}).get('sel')}
+    write('quotes.js', 'QUOTE_DATA', {'source': os.path.basename(src), 'tonnage': ['1-10톤', '10-100톤', '100-1000톤', '1000톤 이상'],
+                                      'items': ITEMS, 'rates': rates, 'substances': subs})
+    print(f'견적 산출 {len(subs)}종 ← {os.path.basename(src)} (환율 {", ".join(f"{k} {v[chr(115)+chr(101)+chr(110)+chr(100)]}" for k, v in rates.items())})')
