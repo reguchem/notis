@@ -96,11 +96,14 @@ form.qstep,div.qstep{display:block}.qstep[hidden]{display:none!important}
 .qtable td.l{text-align:left}.qtable tr.grp td{background:var(--surface2);font-weight:700;text-align:left}
 .qtable tr.tot td{font-weight:800;font-size:15px;border-top:2px solid var(--brand)}
 .qnote{font-size:12px;line-height:1.7;color:var(--muted);margin:12px 0 0}
+.qwait{padding:18px;border:1px dashed var(--line);border-radius:12px;text-align:center;color:var(--muted);font-size:14px;line-height:1.7}
+.qactions .dl[disabled]{opacity:.45;cursor:not-allowed}
+#qFormBtn:empty{display:none}
 .qwarn{padding:12px 14px;border-radius:10px;background:var(--warn-bg);color:var(--warn);font-size:14px}
-.qactions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+.qactions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:16px}
 .qsecondary{font:inherit;font-size:14px;font-weight:700;border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:12px;padding:11px 15px;cursor:pointer}
 @media(max-width:560px){.qgrid{grid-template-columns:92px 1fr}.qradio>div{grid-template-columns:repeat(2,1fr)}.qmeta{grid-template-columns:1fr}.qtable{font-size:12px}.qsteps{font-size:12px}}
-@media print{body>*:not(.qmodal){display:none!important}.qmodal{position:static;background:none;padding:0}.qbox{box-shadow:none;padding:0;width:100%}.qhead,.qsteps,.qactions,#qStep1,#qStep2{display:none!important}.qsheet{border:0}}
+@media print{body>*:not(.qmodal){display:none!important}.qmodal{position:static;background:none;padding:0}.qbox{box-shadow:none;padding:0;width:100%}.qhead,.qsteps,.qactions,#qStep1,.qradio,.qlead{display:none!important}#qStep2{display:block!important}.qsheet{border:0}}
 .dl{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;text-decoration:none;color:#fff;background:var(--brand-strong);padding:11px 15px;border-radius:12px}.dl:hover{filter:brightness(1.12)}.dl:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .org{font-size:14px;color:var(--muted)}
 .list-head{font-size:14px;color:var(--muted);margin:0 0 10px}
@@ -149,7 +152,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
 <div class="qmodal" id="qModal" hidden>
   <div class="qbox" role="dialog" aria-modal="true" aria-labelledby="qTitle">
     <div class="qhead"><h2 id="qTitle">견적 산출</h2><button type="button" class="qclose" id="qClose" aria-label="닫기">×</button></div>
-    <ol class="qsteps" aria-label="진행 단계"><li data-s="1">① 직접입력</li><li data-s="2">② 선택입력</li><li data-s="3">③ 견적서</li></ol>
+    <ol class="qsteps" aria-label="진행 단계"><li data-s="1">① 직접입력</li><li data-s="2">② 선택입력 · 견적서</li></ol>
 
     <form id="qStep1" class="qstep" novalidate>
       <p class="qlead">견적서를 받으실 분의 정보를 입력해 주세요. <span class="req">*</span> 표시는 필수입니다.</p>
@@ -175,7 +178,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
     </form>
 
     <form id="qStep2" class="qstep" novalidate hidden>
-      <p class="qlead">견적 조건을 선택해 주세요. 모든 항목을 선택해야 합니다.</p>
+      <p class="qlead">견적 조건을 선택하면 아래에 견적서가 바로 나옵니다.</p>
       <fieldset class="qradio"><legend>등록희망톤수</legend><div id="qTonOpts"></div></fieldset>
       <fieldset class="qradio"><legend>별지 26호 의뢰 여부</legend><div>
         <label><input type="radio" name="f26" value="1" required><span>예</span></label>
@@ -190,14 +193,10 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
         <label><input type="radio" name="use" value="2"><span>2개</span></label>
         <label><input type="radio" name="use" value="3"><span>3개</span></label>
         <label><input type="radio" name="use" value="4"><span>4개</span></label></div></fieldset>
-      <p class="qerr" id="qErr2" role="alert"></p>
-      <div class="qactions"><button type="button" class="qsecondary" id="qBack">이전</button><button type="submit" class="dl">제출</button></div>
+      <div id="quotePrint" aria-live="polite"></div>
+      <div class="qactions"><button type="button" class="qsecondary" id="qBack">이전</button><span id="qFormBtn"></span><button type="button" class="dl" id="qPrint" disabled>인쇄 · PDF 저장</button><button type="button" class="qsecondary" id="qClose2">닫기</button></div>
     </form>
 
-    <div id="qStep3" class="qstep" hidden>
-      <div id="quotePrint"></div>
-      <div class="qactions"><button type="button" class="qsecondary" id="qReselect">조건 다시 선택</button><button type="button" class="dl" id="qPrint">인쇄 · PDF 저장</button><button type="button" class="qsecondary" id="qClose2">닫기</button></div>
-    </div>
   </div>
 </div>
 <footer>
@@ -274,7 +273,7 @@ window.addEventListener('DOMContentLoaded', function(){
   $('qTonOpts').innerHTML = (QUOTE.tonnage||[]).map((t,i)=>`<label><input type="radio" name="ton" value="${i}" ${i?'':'required'}><span>${esc(t)}</span></label>`).join('');
   const send = data => { if(!LEAD_ENDPOINT) { console.warn('LEAD_ENDPOINT가 비어 있어 입력 정보가 저장되지 않았습니다.'); return; }
     try { fetch(LEAD_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(data), keepalive:true}); } catch(e) { console.warn(e); } };
-  function step(n){ [1,2,3].forEach(i => $('qStep'+i).hidden = i!==n); m.querySelectorAll('.qsteps li').forEach(li => li.classList.toggle('on', +li.dataset.s===n)); m.querySelector('.qbox').scrollTop = 0; m.scrollTop = 0;
+  function step(n){ [1,2].forEach(i => $('qStep'+i).hidden = i!==n); m.querySelectorAll('.qsteps li').forEach(li => li.classList.toggle('on', +li.dataset.s===n)); m.querySelector('.qbox').scrollTop = 0; m.scrollTop = 0;
     const f = $('qStep'+n).querySelector('input:not([readonly]):not(.hp), button'); if(f) f.focus(); }
   function quote(sel){
     const q = QUOTE.substances[cur]; if(!q) return '';
@@ -310,8 +309,8 @@ window.addEventListener('DOMContentLoaded', function(){
       <p class="qnote">※ 본 견적은 웹페이지에서 제공되는 견적으로, 업로드 시기에 따라 현 시점 실제 견적 비용과 차이가 있을 수 있습니다. 대략적인 비용 확인을 위한 참고용이며, 웹페이지에서 확인한 것만으로 견적이 발행된 것으로 보지 않습니다. 등록을 희망하시는 물질과 톤수, 용도 수를 적어 <a href="mailto:kreach@to21.co.kr">kreach@to21.co.kr</a>로 문의해 주시기 바랍니다.<br>※ CSR 노출평가 컨설팅은 용도당 비용이며, 소비자 용도는 용도당 100만원이 추가되고 제조는 등록하려는 용도로 간주합니다.${rateNote}</p>
       <p class="qnote">티오이십일 화학규제본부 · 06631 서울특별시 서초구 서초대로 350, 2층(서초동, 동아빌라트2단지) · Tel 02-6005-1200 · Fax 02-6005-1299</p></div>`};
   }
-  const open = c => { cur = c; const q = QUOTE.substances[c]; const ke = ((joint.find(j => j.cas.some(x => casKey(x)===casKey(c)))||{}).id||[]).join(', '); $('qCas').value = c + (ke ? ` / ${ke}` : ''); $('qErr1').textContent=''; $('qErr2').textContent='';
-    m.hidden = false; document.body.style.overflow='hidden'; step(lead.org ? 2 : 1); };
+  const open = c => { cur = c; $('qFormBtn').innerHTML = formBtn({cas:[c], casRaw:c}); const q = QUOTE.substances[c]; const ke = ((joint.find(j => j.cas.some(x => casKey(x)===casKey(c)))||{}).id||[]).join(', '); $('qCas').value = c + (ke ? ` / ${ke}` : ''); $('qErr1').textContent='';
+    m.hidden = false; document.body.style.overflow='hidden'; step(lead.org ? 2 : 1); if(lead.org) update(); };
   const close = () => { m.hidden = true; document.body.style.overflow=''; };
   $('qStep1').addEventListener('submit', e => { e.preventDefault();
     const f = e.target, val = id => $(id).value.trim();
@@ -324,19 +323,23 @@ window.addEventListener('DOMContentLoaded', function(){
     lead = {org: val('qOrg'), name: val('qName'), email: val('qEmail'), tel: val('qTel')};
     reqId = Date.now().toString(36) + Math.random().toString(36).slice(2,7);
     send({type:'lead', id:reqId, ...lead, cas:$('qCas').value, substance:(QUOTE.substances[cur]||{}).name||'', consent:'동의', page:location.href});
-    step(2);
+    step(2); update();
   });
-  $('qStep2').addEventListener('submit', e => { e.preventDefault();
-    const g = n => (e.target.querySelector(`input[name="${n}"]:checked`)||{}).value;
+  // 선택이 바뀔 때마다 견적서를 바로 계산하고, 네 항목이 모두 선택되면 시트의 같은 줄에 조건·금액을 기록(잠시 멈춘 뒤 1번만)
+  let sendTimer = null;
+  function update(){
+    const f = $('qStep2'), g = n => (f.querySelector(`input[name="${n}"]:checked`)||{}).value;
     const sel = {t:g('ton'), f26:g('f26'), size:g('size'), n:g('use')};
     const miss = [['t','등록희망톤수'],['f26','별지 26호 의뢰 여부'],['size','기업규모'],['n','등록희망 용도수']].filter(([k])=>sel[k]===undefined).map(([,l])=>l);
-    $('qErr2').textContent = miss.length ? `${miss.join(', ')}을(를) 선택해 주세요.` : ''; if(miss.length) return;
+    if(miss.length){ $('quotePrint').innerHTML = `<div class="qwait">남은 선택: ${miss.join(' · ')}<br>네 가지 항목을 모두 선택하면 견적서가 나옵니다.</div>`; $('qPrint').disabled = true; return; }
     sel.t=+sel.t; sel.f26=sel.f26==='1'; sel.size=+sel.size; sel.n=+sel.n;
-    const r = quote(sel); $('quotePrint').innerHTML = r.html;
-    send({type:'quote', id:reqId, cas:$('qCas').value, ton:QUOTE.tonnage[sel.t], form26:sel.f26?'예':'아니오', size:SIZE[sel.size], uses:sel.n+'개', total:r.total});
-    step(3);
-  });
-  $('qBack').onclick = () => step(1); $('qReselect').onclick = () => step(2);
+    const r = quote(sel); $('quotePrint').innerHTML = r.html; $('qPrint').disabled = r.total===null;
+    clearTimeout(sendTimer);
+    sendTimer = setTimeout(() => send({type:'quote', id:reqId, cas:$('qCas').value, ton:QUOTE.tonnage[sel.t], form26:sel.f26?'예':'아니오', size:SIZE[sel.size], uses:sel.n+'개', total:r.total}), 1500);
+  }
+  $('qStep2').addEventListener('change', update);
+  $('qStep2').addEventListener('submit', e => e.preventDefault());
+  $('qBack').onclick = () => step(1);
   $('qClose').onclick = close; $('qClose2').onclick = close; $('qPrint').onclick = () => window.print();
   m.addEventListener('click', e => { if(e.target===m) close(); });
   document.addEventListener('keydown', e => { if(e.key==='Escape' && !m.hidden) close(); });
@@ -383,7 +386,7 @@ function telBlock(it){
   if(it.status!=='late') return `<div class="contact"><a class="tel" href="${CONTACT.href}">☎ ${CONTACT.tel}</a></div>`;
   const d = (it.tel.match(/[\d-]{7,}/)||[''])[0];
   if(!it.tel && !it.org) return `<div class="contact"><a class="tel" href="${CONTACT.href}">☎ ${CONTACT.tel}</a><span class="org">등록된 대리인 문의처가 없어 대표번호를 안내합니다.</span></div>`;
-  return `<div class="contact">${it.tel?(d?`<a class="tel" href="tel:${esc(d.replace(/-/g,''))}">☎ ${esc(it.tel)}</a>`:`<span class="tel">${esc(it.tel)}</span>`):''}${formBtn(it)}${quoteBtn(it)}${it.org?`<span class="org">담당 대리인 · ${esc(it.org)}</span>`:''}</div>`;
+  return `<div class="contact">${it.tel?(d?`<a class="tel" href="tel:${esc(d.replace(/-/g,''))}">☎ ${esc(it.tel)}</a>`:`<span class="tel">${esc(it.tel)}</span>`):''}${quoteBtn(it)}${it.org?`<span class="org">담당 대리인 · ${esc(it.org)}</span>`:''}</div>`;
 }
 function card(it){
   const st = STATUS[it.status];
