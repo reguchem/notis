@@ -265,7 +265,7 @@ function uniq(arr){return [...new Set(arr)]}
 
 // 견적 산출 (① 직접입력 → ② 선택입력 → ③ 견적서). 계산은 견적산출.xlsx '견적서(출력)' 시트와 같은 방식
 // 직접입력 내용은 Google 스프레드시트(Apps Script 웹 앱)로 보냅니다. 배포 후 받은 웹 앱 주소를 아래에 넣으세요.
-const LEAD_ENDPOINT = '';
+const LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwmLfEcW8JEX_iYpChmUrkZcmGNBjXW5-li4WTjehoMxl95sxaRiUre24Idryhwb-KM/exec';
 window.addEventListener('DOMContentLoaded', function(){
   const m = $('qModal'); if(!m) return;
   const won = n => Math.round(n).toLocaleString('ko-KR');
