@@ -48,6 +48,7 @@ body.has-result .quick{display:none}
 .name{font-size:18px;font-weight:700;line-height:1.4;word-break:break-word;margin:0 0 12px}
 dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;font-size:14px}
 dt{color:var(--muted)}dd{margin:0;word-break:break-all}
+.poly-info{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--accent-bg);color:var(--brand);font-size:14px;line-height:1.7}.poly-info strong{display:block;font-size:15px}
 .cmr-warn{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--warn-bg);color:var(--warn);font-size:14px;line-height:1.7}.cmr-warn strong{display:block;font-size:15px}
 dd .sub{display:block;font-size:12px;color:var(--muted);margin-top:2px;word-break:keep-all}
 .tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface2);color:var(--brand);margin-right:6px}
@@ -221,6 +222,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--brand)}
 <script src="data/substances.js"></script>
 <script src="data/existing.js"></script>
 <script src="data/cmr.js"></script>
+<script src="data/polymers.js"></script>
 <script src="data/quotes.js"></script>
 <script>
 const DATA = window.SUBSTANCE_DATA || {items:[],asof:''};
@@ -248,6 +250,10 @@ const idx = new Map(); const add=(k,it)=>{if(!k)return; if(!idx.has(k))idx.set(k
 const listOf = new Map();
 const CMR = window.CMR_DATA || {items:[]};
 const cmrByCas = new Map(); CMR.items.filter(c=>c.cas.length===1).forEach(c=>cmrByCas.set(casKey(c.cas[0]), c)); // 'A & B'처럼 여러 물질을 묶은 항목은 개별 CAS로 판정하지 않음
+const POLY = window.POLYMER_DATA || {items:[]};
+const polyById = new Map(), polyByCas = new Map();
+POLY.items.forEach(([id, cas, n]) => { const o = {id, cas, n}; if(id) polyById.set(key(id), o); cas.forEach(c => polyByCas.set(casKey(c), o)); });
+const polyOf = it => (it.id||[]).map(i => polyById.get(key(i))).find(Boolean) || [...(it.cas||[]), it.casRaw].map(c => polyByCas.get(casKey(c))).find(Boolean);
 const cmrOf = it => [...(it.cas||[]), it.casRaw].map(casKey).map(k=>cmrByCas.get(k)).find(Boolean);
 existing.forEach(it=>{it.id.forEach(id=>{add('I'+key(id),it); listOf.set(key(id),it.list)}); it.cas.forEach(c=>add('C'+casKey(c),it))});
 joint.forEach(it=>{it.id.forEach(id=>add('I'+key(id),it)); (it.cas.length?it.cas:[it.casRaw]).forEach(c=>add('C'+casKey(c),it)); it.list=it.id.map(id=>listOf.get(key(id))).filter(Boolean)[0]||''});
@@ -396,11 +402,12 @@ function telBlock(it){
 function card(it){
   const st = STATUS[it.status];
   const cmr = cmrOf(it);
-  const tags = [it.list ? `기존화학물질 고시 ${it.list}` : '', it.note, cmr ? '등록대상 CMR물질' : ''].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  const poly = polyOf(it);
+  const tags = [it.list ? `기존화학물질 고시 ${it.list}` : '', it.note, cmr ? '등록대상 CMR물질' : '', poly ? '고분자 등록면제 확인 물질' : ''].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
   return `<article class="card"><div class="status ${st.cls}"><span class="dot"></span>${st.label}</div><div class="body">
     <p class="name">${esc(it.n||'-')}</p>
     <dl><dt>CAS 번호</dt><dd>${esc(it.casRaw||'-')}</dd><dt>고유번호</dt><dd>${esc(it.id.join(', ')||'-')}</dd>${tags?`<dt>구분</dt><dd>${tags}</dd>`:''}${cmr?`<dt>CMR 고시</dt><dd>${esc(CMR.notice)} 별표 순번 ${cmr.no}<span class="sub">「${esc(CMR.title)}」</span></dd>`:''}</dl>
-    ${cmr?`<div class="cmr-warn"><strong>⚠ 등록대상 CMR물질</strong>이 물질의 등록 유예기간은 <b>2021년 12월 31일</b>에 종료되어, 현재는 유예기간이 없습니다. 제조·수입 전에 등록이 필요합니다.</div>`:''}<div class="next"><strong>다음 단계</strong>${st.next(it)}${telBlock(it)}</div>
+    ${poly?`<div class="poly-info"><strong>ℹ 고분자화합물 등록면제 확인 이력</strong>이 물질은 「고분자화합물로서 등록 면제 확인받은 기존화학물질 목록」에 있습니다. 등록면제 확인은 제조·수입자별로 받아야 하므로, 귀사가 등록면제 확인 대상인지 아래 번호로 문의해 주세요.</div>`:''}${cmr?`<div class="cmr-warn"><strong>⚠ 등록대상 CMR물질</strong>이 물질의 등록 유예기간은 <b>2021년 12월 31일</b>에 종료되어, 현재는 유예기간이 없습니다. 제조·수입 전에 등록이 필요합니다.</div>`:''}<div class="next"><strong>다음 단계</strong>${st.next(it)}${telBlock(it)}</div>
   </div></article>`;
 }
 function render(res){

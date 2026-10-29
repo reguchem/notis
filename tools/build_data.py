@@ -129,3 +129,16 @@ if qx:
     write('quotes.js', 'QUOTE_DATA', {'source': os.path.basename(src), 'tonnage': ['1-10톤', '10-100톤', '100-1000톤', '1000톤 이상'],
                                       'items': ITEMS, 'rates': rates, 'substances': subs})
     print(f'견적 산출 {len(subs)}종 ← {os.path.basename(src)} (환율 {", ".join(f"{k} {v[chr(115)+chr(101)+chr(110)+chr(100)]}" for k, v in rates.items())})')
+
+# 5) 고분자화합물로서 등록면제 확인받은 기존화학물질 목록 (열: 고유번호, CAS번호, 물질명) → data/polymers.js
+px = [f for f in glob.glob(os.path.join(ROOT, '*.xlsx')) if '고분자' in os.path.basename(f) and not os.path.basename(f).startswith('~$')]
+if px:
+    src = sorted(px)[-1]
+    ws = openpyxl.load_workbook(src, read_only=True, data_only=True).worksheets[0]
+    rows = []
+    for r in ws.iter_rows(min_row=2, values_only=True):
+        if not r or not any(r):
+            continue
+        rows.append([s(r[0]), ['-'.join(m) for m in CAS_RE.findall(s(r[1]))], s(r[2])])
+    write('polymers.js', 'POLYMER_DATA', {'source': os.path.basename(src), 'items': rows})
+    print(f'고분자 등록면제 확인 {len(rows)}건 ← {os.path.basename(src)}')
