@@ -315,7 +315,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <div class="qmeta"><div><b>${esc(lead.org)}</b> 귀중<br>${esc(lead.name)} 님 귀하</div><div>견적일자: ${today}<br>견적유효기간: 유효하지 않음(참고용)</div>
       <div>CAS No.: <b>${esc(cur)}</b> ${esc(q.name)}</div><div>등록희망톤수: <b>${esc(QUOTE.tonnage[t])}</b> · 용도 ${n}개 · ${SIZE[size]} · 별지 26호 ${f26?'의뢰':'미의뢰'}</div></div>
       <table class="qtable"><thead><tr><th>구분</th><th>단가(원)</th><th>건수</th><th>금액(원)</th></tr></thead><tbody>
-      ${rows.map(r=>r[0]==='grp'?`<tr class="grp"><td colspan="4">${r[1]}</td></tr>`:`<tr><td class="l">${r[0]} ${r[1]}</td><td>${r[4] ?? won(r[2]||0)}</td><td>${r[3]}</td><td>${won((r[2]||0)*r[3])}</td></tr>`).join('')}
+      ${rows.map(r=>r[0]==='grp'?`<tr class="grp"><td colspan="4">${r[1]}</td></tr>`:`<tr><td class="l">${r[0]} ${r[1]}</td><td>${r[4] ?? won(r[2]||0)}</td><td>${(r[2]||0) ? r[3] : 0}</td><td>${won((r[2]||0)*r[3])}</td></tr>`).join('')}
       <tr class="tot"><td class="l">총계 (VAT 별도)</td><td colspan="3">${won(total)}원</td></tr></tbody></table>
       <p class="qnote">※ 본 견적은 웹페이지 상에서 제공되는 견적으로 업로드 시기에 따라 현 시점 실제 견적 비용과 차이가 있을 수 있습니다. 대략적인 비용확인을 위한 참고수단으로만 확인해 주시기 바라며, 웹페이지에서 확인한 행위만으로 정식으로 견적이 발행된 것으로 간주되지 않습니다.<br>※ 등록을 희망하시는 물질의 참조권 구매신청서를 다운로드 하시어 입력 항목에 "O" 하신 후, 인감 날인하시어 <a href="mailto:kreach@to21.co.kr">kreach@to21.co.kr</a> 로 첨부하여 문의해 주시기 바랍니다.</p>
       <p class="qnote"><b>[견적 설명]</b><br>※ CSR 노출평가 컨설팅은 용도당 비용이며, 소비자 용도는 용도당 100만원이 추가되고 제조는 등록하려는 용도로 간주합니다.</p>
