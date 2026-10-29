@@ -294,7 +294,7 @@ window.addEventListener('DOMContentLoaded', function(){
     const curcy = q.testCurrency || 'KRW';
     const rate = curcy==='KRW' ? 1 : ((QUOTE.rates[curcy]||{}).send||0) + 50;
     if(!sold) return {html:`<div class="qwarn">선택한 톤수구간(${esc(QUOTE.tonnage[t])})은 참조권을 판매하지 않습니다.</div>`, total:null};
-    const CUR_KO = {EUR:'유로', USD:'달러'}, CUR_MARK = {EUR:'E', USD:'$'};
+    const CUR_KO = {EUR:'유로', USD:'달러'}, CUR_MARK = {EUR:'€', USD:'$'};
     const rows = [
       ['grp','1. 컨설팅 비용'],
       ['1.1.','개별서류 작성 컨설팅', v('개별서류 작성 컨설팅'), 1],
@@ -305,7 +305,7 @@ window.addEventListener('DOMContentLoaded', function(){
       ['grp','3. 참조권 비용'],
       ['3.1.','협의체 참조권', v('협의체 참조권'), 1],
       ['3.2.','CSR 유해성평가 참조권', v('CSR 유해성평가 참조권'), 1],
-      ['3.3.','시험자료 참조권' + (curcy!=='KRW' ? ` (환율: ${rate} 원/${CUR_KO[curcy]||esc(curcy)})` : ''), Math.round((v('시험자료 참조권')||0)*rate), 1, curcy!=='KRW' ? `(${CUR_MARK[curcy]||esc(curcy)})${v('시험자료 참조권')||0}` : null],
+      ['3.3.','시험자료 참조권' + (curcy!=='KRW' ? ` (환율: ${rate} 원/${CUR_KO[curcy]||esc(curcy)})` : ''), Math.round((v('시험자료 참조권')||0)*rate), 1, curcy!=='KRW' ? `${CUR_MARK[curcy]||esc(curcy)+' '}${v('시험자료 참조권')||0}` : null],
       ['3.4.','정부생산자료 참조권', v('정부생산자료 참조권'), 1],
       ['3.5.','기타 참조권', v('기타 참조권'), 1],
     ];
