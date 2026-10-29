@@ -294,7 +294,7 @@ window.addEventListener('DOMContentLoaded', function(){
       ['1.3.','별지 26호 서식작성 컨설팅', f26 ? v('별지 26호 서식작성 컨설팅') : 0, f26 ? n : 0],
       ['grp','2. 행정수수료'],
       ['2.1.','등록 행정수수료(수입인지)', FEE[size], 1],
-      ['grp','3. 위해성에 관한 자료(CSR) 작성비용'],
+      ['grp','3. 참조권 비용'],
       ['3.1.','협의체 참조권', v('협의체 참조권'), 1],
       ['3.2.','CSR 유해성평가 참조권', v('CSR 유해성평가 참조권'), 1],
       ['3.3.','시험자료 참조권' + (curcy!=='KRW' ? ` (${esc(curcy)} ${Number(v('시험자료 참조권')||0).toLocaleString()} × ${rate.toLocaleString()}원)` : ''), Math.round((v('시험자료 참조권')||0)*rate), 1],
