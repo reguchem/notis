@@ -377,8 +377,8 @@ function search(raw){
 
 // 참조권 구매신청서 다운로드 (CAS 번호 → forms 폴더의 PDF). 여기에 등록된 물질만 버튼이 나옵니다.
 const FORMS = {
-  // '111-46-6': 'forms/111-46-6_참조권 구매신청서.pdf',
-  '1317-38-0': 'forms/1317-38-0_참조권 구매신청서.pdf',
+  // '111-46-6': 'forms/111-46-6_참조권 구매신청서.docx',
+  '1317-38-0': 'forms/1317-38-0_참조권 구매신청서.docx',
 };
 function formBtn(it){
   const c = [...(it.cas||[]), it.casRaw].map(casKey).find(k => Object.keys(FORMS).some(f => casKey(f)===k));

@@ -6,3 +6,4 @@ __pycache__/
 참조권 구매신청서_CAS별 최신/
 Claude outputs/
 desktop.ini
+!forms/*.docx
