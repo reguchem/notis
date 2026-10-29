@@ -304,13 +304,14 @@ window.addEventListener('DOMContentLoaded', function(){
       ['grp','3. 참조권 비용'],
       ['3.1.','협의체 참조권', v('협의체 참조권'), 1],
       ['3.2.','CSR 유해성평가 참조권', v('CSR 유해성평가 참조권'), 1],
-      ['3.3.','시험자료 참조권' + (curcy!=='KRW' ? ` (${esc(curcy)} ${Number(v('시험자료 참조권')||0).toLocaleString()} × ${rate.toLocaleString()}원)` : ''), Math.round((v('시험자료 참조권')||0)*rate), 1],
+      ['3.3.','시험자료 참조권', Math.round((v('시험자료 참조권')||0)*rate), 1],
       ['3.4.','정부생산자료 참조권', v('정부생산자료 참조권'), 1],
       ['3.5.','기타 참조권', v('기타 참조권'), 1],
     ];
     const total = rows.filter(r=>r[0]!=='grp').reduce((a,r)=>a+(r[2]||0)*r[3],0);
     const today = new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
-    const rateNote = curcy!=='KRW' && QUOTE.rates[curcy] ? `<br>※ 시험자료 참조권은 ${esc(curcy)} 송금 환율 ${QUOTE.rates[curcy].send.toLocaleString()}원(${esc(QUOTE.rates[curcy].date)} 기준)에 50원을 더한 환율로 환산했습니다. 의뢰자가 직접 송금할 수도 있습니다.` : '';
+    const CUR_KO = {EUR:'유로', USD:'달러'};
+    const rateNote = curcy!=='KRW' ? `<br>※ 적용 환율: ${rate.toLocaleString('ko-KR',{maximumFractionDigits:2})}원/${CUR_KO[curcy]||esc(curcy)}` : '';
     return {total, html:`<div class="qsheet"><div class="qtop"><img src="images/to21-logo-en.png" alt="TO21 Co.,Ltd." class="qlogo" width="199" height="70"><h3>견적서</h3><span></span></div>
       <div class="qmeta"><div><b>${esc(lead.org)}</b> 귀중<br>${esc(lead.name)} 님 귀하</div><div>견적일자: ${today}<br>견적유효기간: 유효하지 않음(참고용)</div>
       <div>CAS No.: <b>${esc(cur)}</b> ${esc(q.name)}</div><div>등록희망톤수: <b>${esc(QUOTE.tonnage[t])}</b> · 용도 ${n}개 · ${SIZE[size]} · 별지 26호 ${f26?'의뢰':'미의뢰'}</div></div>
