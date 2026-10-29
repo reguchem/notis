@@ -318,7 +318,7 @@ window.addEventListener('DOMContentLoaded', function(){
       ${rows.map(r=>r[0]==='grp'?`<tr class="grp"><td colspan="4">${r[1]}</td></tr>`:`<tr><td class="l">${r[0]} ${r[1]}</td><td>${r[4] ?? won(r[2]||0)}</td><td>${(r[2]||0) ? r[3] : 0}</td><td>${won((r[2]||0)*r[3])}</td></tr>`).join('')}
       <tr class="tot"><td class="l">총계 (VAT 별도)</td><td colspan="3">${won(total)}원</td></tr></tbody></table>
       <p class="qnote">※ 본 견적은 웹페이지 상에서 제공되는 견적으로 업로드 시기에 따라 현 시점 실제 견적 비용과 차이가 있을 수 있습니다. 대략적인 비용확인을 위한 참고수단으로만 확인해 주시기 바라며, 웹페이지에서 확인한 행위만으로 정식으로 견적이 발행된 것으로 간주되지 않습니다.<br>※ 등록을 희망하시는 물질의 참조권 구매신청서를 다운로드 하시어 입력 항목에 "O" 하신 후, 인감 날인하시어 <a href="mailto:kreach@to21.co.kr">kreach@to21.co.kr</a> 로 첨부하여 문의해 주시기 바랍니다.</p>
-      <p class="qnote"><b>[견적 설명]</b><br>※ CSR 노출평가 컨설팅은 용도당 비용이며, 소비자 용도는 용도당 100만원이 추가되고 제조는 등록하려는 용도로 간주합니다.</p>
+      <p class="qnote"><b>[견적 설명]</b><br>※ CSR 노출평가 컨설팅은 산업적 용도당 비용이며, 소비자 용도가 있는 경우 용도당 100만원이 추가되고 제조공정은 하나의 용도로 간주됩니다.</p>
       <p class="qnote">티오이십일 화학규제본부 · 06631 서울특별시 서초구 서초대로 350, 2층(서초동, 동아빌라트2단지) · Tel 02-6005-1200 · Fax 02-6005-1299</p></div>`};
   }
   const open = c => { cur = c; $('qFormBtn').innerHTML = formBtn({cas:[c], casRaw:c}); const q = QUOTE.substances[c]; const ke = ((joint.find(j => j.cas.some(x => casKey(x)===casKey(c)))||{}).id||[]).join(', '); $('qCas').value = c + (ke ? ` / ${ke}` : ''); $('qErr1').textContent='';
