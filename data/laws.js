@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-10-31",
- "from": "2026-10-28",
- "to": "2026-10-31",
+ "updated": "2026-11-01",
+ "from": "2026-10-29",
+ "to": "2026-11-01",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,7 +19,7 @@ window.LAW_DATA = {
    "field": "수자원ㆍ토지ㆍ건설업",
    "period": "2026. 10. 30. ~2026. 12. 11.",
    "start": "2026-10-30",
-   "remain": "41일",
+   "remain": "40일",
    "firstSeen": "2026-10-31"
   }
  ],
@@ -35,7 +35,6 @@ window.LAW_DATA = {
    "firstSeen": "2026-10-31"
   }
  ],
- "laws": [],
  "rules": [
   {
    "title": "생활폐기물 선별시설의 설치ㆍ운영에 관한 지침",
@@ -46,9 +45,13 @@ window.LAW_DATA = {
    "firstSeen": "2026-10-28"
   }
  ],
+ "laws": [],
+ "stale": [
+  "laws"
+ ],
  "newCount": {
-  "legislative": 1,
-  "administrative": 1,
+  "legislative": 0,
+  "administrative": 0,
   "laws": 0,
   "rules": 0
  }
