@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-01",
- "from": "2026-10-29",
- "to": "2026-11-01",
+ "updated": "2026-11-02",
+ "from": "2026-10-30",
+ "to": "2026-11-02",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,7 +19,7 @@ window.LAW_DATA = {
    "field": "수자원ㆍ토지ㆍ건설업",
    "period": "2026. 10. 30. ~2026. 12. 11.",
    "start": "2026-10-30",
-   "remain": "40일",
+   "remain": "39일",
    "firstSeen": "2026-10-31"
   }
  ],
@@ -35,6 +35,7 @@ window.LAW_DATA = {
    "firstSeen": "2026-10-31"
   }
  ],
+ "laws": [],
  "rules": [
   {
    "title": "생활폐기물 선별시설의 설치ㆍ운영에 관한 지침",
@@ -44,10 +45,6 @@ window.LAW_DATA = {
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1947",
    "firstSeen": "2026-10-28"
   }
- ],
- "laws": [],
- "stale": [
-  "laws"
  ],
  "newCount": {
   "legislative": 0,
