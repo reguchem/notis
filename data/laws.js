@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-04",
- "from": "2026-11-01",
- "to": "2026-11-04",
+ "updated": "2026-11-05",
+ "from": "2026-11-02",
+ "to": "2026-11-05",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,7 +19,7 @@ window.LAW_DATA = {
    "field": "환경",
    "period": "2026. 11. 2. ~2026. 12. 14.",
    "start": "2026-11-02",
-   "remain": "40일",
+   "remain": "39일",
    "firstSeen": "2026-11-03"
   },
   {
@@ -31,7 +31,7 @@ window.LAW_DATA = {
    "field": "환경",
    "period": "2026. 11. 2. ~2026. 12. 14.",
    "start": "2026-11-02",
-   "remain": "40일",
+   "remain": "39일",
    "firstSeen": "2026-11-03"
   }
  ],
@@ -140,13 +140,55 @@ window.LAW_DATA = {
     "시행"
    ],
    "firstSeen": "2026-11-03"
+  },
+  {
+   "title": "대기환경보전법",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279785&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "일부개정",
+   "lawType": "법률",
+   "number": "제21123호",
+   "promulgated": "2025-11-11",
+   "effective": "2026-11-12",
+   "tags": [
+    "시행예정"
+   ],
+   "firstSeen": "2026-11-05"
+  },
+  {
+   "title": "생물다양성 보전 및 이용에 관한 법률",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279787&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "일부개정",
+   "lawType": "법률",
+   "number": "제21124호",
+   "promulgated": "2025-11-11",
+   "effective": "2026-11-12",
+   "tags": [
+    "시행예정"
+   ],
+   "firstSeen": "2026-11-05"
+  },
+  {
+   "title": "폐기물관리법",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279797&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "일부개정",
+   "lawType": "법률",
+   "number": "제21129호",
+   "promulgated": "2025-11-11",
+   "effective": "2026-11-12",
+   "tags": [
+    "시행예정"
+   ],
+   "firstSeen": "2026-11-05"
   }
  ],
  "rules": [],
  "newCount": {
   "legislative": 0,
-  "administrative": 3,
-  "laws": 1,
+  "administrative": 0,
+  "laws": 3,
   "rules": 0
  }
 };
