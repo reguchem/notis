@@ -1,40 +1,15 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-05",
- "from": "2026-11-02",
- "to": "2026-11-05",
+ "updated": "2026-11-06",
+ "from": "2026-11-03",
+ "to": "2026-11-06",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
   "화학물질안전원",
   "국립환경과학원"
  ],
- "legislative": [
-  {
-   "title": "자연환경보전법 시행령 일부개정령안 입법예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/89274",
-   "kind": "일부",
-   "org": "기후에너지환경부",
-   "lawType": "대통령령",
-   "field": "환경",
-   "period": "2026. 11. 2. ~2026. 12. 14.",
-   "start": "2026-11-02",
-   "remain": "39일",
-   "firstSeen": "2026-11-03"
-  },
-  {
-   "title": "자연환경보전법 시행규칙 일부개정령안 입법예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/89232",
-   "kind": "일부",
-   "org": "기후에너지환경부",
-   "lawType": "부령",
-   "field": "환경",
-   "period": "2026. 11. 2. ~2026. 12. 14.",
-   "start": "2026-11-02",
-   "remain": "39일",
-   "firstSeen": "2026-11-03"
-  }
- ],
+ "legislative": [],
  "administrative": [
   {
    "title": "유입주의 생물 지정 고시 일부개정안 행정예고",
@@ -68,6 +43,35 @@ window.LAW_DATA = {
   }
  ],
  "laws": [
+  {
+   "title": "기후에너지환경부와 그 소속기관 직제 시행규칙",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291853&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "일부개정",
+   "lawType": "기후에너지환경부령",
+   "number": "제68호",
+   "promulgated": "2026-11-06",
+   "effective": "2026-11-06",
+   "tags": [
+    "공포",
+    "시행"
+   ],
+   "firstSeen": "2026-11-06"
+  },
+  {
+   "title": "기후에너지환경부와 그 소속기관 직제",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291645&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부,행정안전부",
+   "revision": "타법개정",
+   "lawType": "대통령령",
+   "number": "제36801호",
+   "promulgated": "2026-11-06",
+   "effective": "2026-11-06",
+   "tags": [
+    "시행"
+   ],
+   "firstSeen": "2026-11-06"
+  },
   {
    "title": "대기환경보전법 시행규칙",
    "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291621&viewCls=lsRvsDocInfoR",
@@ -188,7 +192,7 @@ window.LAW_DATA = {
  "newCount": {
   "legislative": 0,
   "administrative": 0,
-  "laws": 3,
+  "laws": 2,
   "rules": 0
  }
 };
