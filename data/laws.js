@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-06",
- "from": "2026-11-03",
- "to": "2026-11-06",
+ "updated": "2026-11-07",
+ "from": "2026-11-04",
+ "to": "2026-11-07",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -88,64 +88,6 @@ window.LAW_DATA = {
    "firstSeen": "2026-11-04"
   },
   {
-   "title": "청년 등의 사회진출 지원을 위한 실무경력 인정 확대에 관한 4개 법령의 일부개정에 관한 대통령령",
-   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291541&viewCls=lsRvsDocInfoR",
-   "org": "국방부,기후에너지환경부,농림축산식품부,성평등가족부",
-   "revision": "일괄개정",
-   "lawType": "대통령령",
-   "number": "제36800호",
-   "promulgated": "2026-11-03",
-   "effective": "2026-11-03",
-   "tags": [
-    "공포"
-   ],
-   "firstSeen": "2026-11-03"
-  },
-  {
-   "title": "인공조명에 의한 빛공해 방지법 시행규칙",
-   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291615&viewCls=lsRvsDocInfoR",
-   "org": "기후에너지환경부",
-   "revision": "일부개정",
-   "lawType": "기후에너지환경부령",
-   "number": "제65호",
-   "promulgated": "2026-11-03",
-   "effective": "2026-11-03",
-   "tags": [
-    "공포",
-    "시행"
-   ],
-   "firstSeen": "2026-11-03"
-  },
-  {
-   "title": "소음ㆍ진동관리법 시행규칙",
-   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291655&viewCls=lsRvsDocInfoR",
-   "org": "기후에너지환경부",
-   "revision": "일부개정",
-   "lawType": "기후에너지환경부령",
-   "number": "제66호",
-   "promulgated": "2026-11-03",
-   "effective": "2026-11-03",
-   "tags": [
-    "공포",
-    "시행"
-   ],
-   "firstSeen": "2026-11-03"
-  },
-  {
-   "title": "소음ㆍ진동관리법 시행령",
-   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291547&viewCls=lsRvsDocInfoR",
-   "org": "기후에너지환경부",
-   "revision": "타법개정",
-   "lawType": "대통령령",
-   "number": "제36800호",
-   "promulgated": "2026-11-03",
-   "effective": "2026-11-03",
-   "tags": [
-    "시행"
-   ],
-   "firstSeen": "2026-11-03"
-  },
-  {
    "title": "대기환경보전법",
    "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279785&viewCls=lsRvsDocInfoR",
    "org": "기후에너지환경부",
@@ -188,11 +130,28 @@ window.LAW_DATA = {
    "firstSeen": "2026-11-05"
   }
  ],
- "rules": [],
+ "rules": [
+  {
+   "title": "환경위성 기본 산출물 생산 업무처리지침",
+   "date": "2026-11-05",
+   "number": "920",
+   "org": "국립환경과학원",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1951",
+   "firstSeen": "2026-11-07"
+  },
+  {
+   "title": "환경위성 관측자료의 검증을 위한 지상원격장비 설치·운영 지침",
+   "date": "2026-11-05",
+   "number": "921",
+   "org": "국립환경과학원",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1949",
+   "firstSeen": "2026-11-07"
+  }
+ ],
  "newCount": {
   "legislative": 0,
   "administrative": 0,
-  "laws": 2,
-  "rules": 0
+  "laws": 0,
+  "rules": 2
  }
 };
