@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-07",
- "from": "2026-11-04",
- "to": "2026-11-07",
+ "updated": "2026-11-08",
+ "from": "2026-11-05",
+ "to": "2026-11-08",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -10,38 +10,7 @@ window.LAW_DATA = {
   "국립환경과학원"
  ],
  "legislative": [],
- "administrative": [
-  {
-   "title": "유입주의 생물 지정 고시 일부개정안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47638",
-   "ruleType": "고시",
-   "org": "기후에너지환경부",
-   "notice": "제2026-997호",
-   "period": "2026. 11. 4. ~ 2026. 11. 24.",
-   "start": "2026-11-04",
-   "firstSeen": "2026-11-04"
-  },
-  {
-   "title": "수질오염공정시험기준고시 일부개정안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47580",
-   "ruleType": "고시",
-   "org": "국립환경과학원",
-   "notice": "제2026-448호",
-   "period": "2026. 11. 4. ~ 2026. 11. 30.",
-   "start": "2026-11-04",
-   "firstSeen": "2026-11-04"
-  },
-  {
-   "title": "폐기물공정시험기준고시 일부개정안 행정예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47640",
-   "ruleType": "고시",
-   "org": "국립환경과학원",
-   "notice": "제2026-449호",
-   "period": "2026. 11. 4. ~ 2026. 11. 30.",
-   "start": "2026-11-04",
-   "firstSeen": "2026-11-04"
-  }
- ],
+ "administrative": [],
  "laws": [
   {
    "title": "기후에너지환경부와 그 소속기관 직제 시행규칙",
@@ -71,21 +40,6 @@ window.LAW_DATA = {
     "시행"
    ],
    "firstSeen": "2026-11-06"
-  },
-  {
-   "title": "대기환경보전법 시행규칙",
-   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291621&viewCls=lsRvsDocInfoR",
-   "org": "기후에너지환경부",
-   "revision": "일부개정",
-   "lawType": "기후에너지환경부령",
-   "number": "제67호",
-   "promulgated": "2026-11-04",
-   "effective": "2026-11-04",
-   "tags": [
-    "공포",
-    "시행"
-   ],
-   "firstSeen": "2026-11-04"
   },
   {
    "title": "대기환경보전법",
@@ -136,14 +90,6 @@ window.LAW_DATA = {
    "date": "2026-11-05",
    "number": "920",
    "org": "국립환경과학원",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1951",
-   "firstSeen": "2026-11-07"
-  },
-  {
-   "title": "환경위성 관측자료의 검증을 위한 지상원격장비 설치·운영 지침",
-   "date": "2026-11-05",
-   "number": "921",
-   "org": "국립환경과학원",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1949",
    "firstSeen": "2026-11-07"
   }
@@ -152,6 +98,6 @@ window.LAW_DATA = {
   "legislative": 0,
   "administrative": 0,
   "laws": 0,
-  "rules": 2
+  "rules": 0
  }
 };
