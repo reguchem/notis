@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-08",
- "from": "2026-11-05",
- "to": "2026-11-08",
+ "updated": "2026-11-09",
+ "from": "2026-11-06",
+ "to": "2026-11-09",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -10,7 +10,19 @@ window.LAW_DATA = {
   "국립환경과학원"
  ],
  "legislative": [],
- "administrative": [],
+ "administrative": [
+  {
+   "title": "통합관리사업장의 배출 및 방지시설 운영·관리와 허가조건 이행에 대한 전산 기록·보존에 관한 고시 개정안 행정예고",
+   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47680",
+   "ruleType": "고시",
+   "org": "국립환경과학원",
+   "notice": "제2026-452호",
+   "period": "2026. 11. 9. ~ 2026. 11. 20.",
+   "start": "2026-11-09",
+   "firstSeen": "2026-11-09"
+  }
+ ],
+ "rules": [],
  "laws": [
   {
    "title": "기후에너지환경부와 그 소속기관 직제 시행규칙",
@@ -84,19 +96,12 @@ window.LAW_DATA = {
    "firstSeen": "2026-11-05"
   }
  ],
- "rules": [
-  {
-   "title": "환경위성 기본 산출물 생산 업무처리지침",
-   "date": "2026-11-05",
-   "number": "920",
-   "org": "국립환경과학원",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1949",
-   "firstSeen": "2026-11-07"
-  }
+ "stale": [
+  "laws"
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 0,
+  "administrative": 1,
   "laws": 0,
   "rules": 0
  }
