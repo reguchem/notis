@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-09",
- "from": "2026-11-06",
- "to": "2026-11-09",
+ "updated": "2026-11-10",
+ "from": "2026-11-07",
+ "to": "2026-11-10",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -22,36 +22,135 @@ window.LAW_DATA = {
    "firstSeen": "2026-11-09"
   }
  ],
- "rules": [],
  "laws": [
   {
-   "title": "기후에너지환경부와 그 소속기관 직제 시행규칙",
-   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291853&viewCls=lsRvsDocInfoR",
+   "title": "폐기물관리법 시행령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291813&viewCls=lsRvsDocInfoR",
    "org": "기후에너지환경부",
    "revision": "일부개정",
-   "lawType": "기후에너지환경부령",
-   "number": "제68호",
-   "promulgated": "2026-11-06",
-   "effective": "2026-11-06",
+   "lawType": "대통령령",
+   "number": "제36811호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-12",
    "tags": [
     "공포",
-    "시행"
+    "시행예정"
    ],
-   "firstSeen": "2026-11-06"
+   "firstSeen": "2026-11-10"
   },
   {
-   "title": "기후에너지환경부와 그 소속기관 직제",
-   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291645&viewCls=lsRvsDocInfoR",
-   "org": "기후에너지환경부,행정안전부",
+   "title": "생물다양성 보전 및 이용에 관한 법률 시행령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291657&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "일부개정",
+   "lawType": "대통령령",
+   "number": "제36813호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-12",
+   "tags": [
+    "공포",
+    "시행예정"
+   ],
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "title": "대기환경보전법 시행령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291815&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "일부개정",
+   "lawType": "대통령령",
+   "number": "제36812호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-12",
+   "tags": [
+    "공포",
+    "시행예정"
+   ],
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "title": "법정공고 방식 다양화를 위한 39개 법령의 일부개정에 관한 대통령령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291729&viewCls=lsRvsDocInfoR",
+   "org": "개인정보보호위원회,고용노동부,공정거래위원회,국가데이터처,국가유산청,국방부,국토교통부,금융위원회,기후에너지환경부,문화체육관광부,보건복지부,산업통상부,해양수산부,행정안전부",
+   "revision": "일괄개정",
+   "lawType": "대통령령",
+   "number": "제36804호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-10",
+   "tags": [
+    "공포"
+   ],
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "title": "먹는물관리법 시행령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291755&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
    "revision": "타법개정",
    "lawType": "대통령령",
-   "number": "제36801호",
-   "promulgated": "2026-11-06",
-   "effective": "2026-11-06",
+   "number": "제36804호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-10",
    "tags": [
     "시행"
    ],
-   "firstSeen": "2026-11-06"
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "title": "수도법 시행령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291767&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "타법개정",
+   "lawType": "대통령령",
+   "number": "제36804호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-10",
+   "tags": [
+    "시행"
+   ],
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "title": "온실가스 배출권의 할당 및 거래에 관한 법률 시행령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291779&viewCls=lsRvsDocInfoR",
+   "org": "기획예산처,기후에너지환경부",
+   "revision": "타법개정",
+   "lawType": "대통령령",
+   "number": "제36804호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-10",
+   "tags": [
+    "시행"
+   ],
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "title": "전기사업법 시행령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291787&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "타법개정",
+   "lawType": "대통령령",
+   "number": "제36804호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-10",
+   "tags": [
+    "시행"
+   ],
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "title": "친수구역 활용에 관한 특별법 시행령",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=291797&viewCls=lsRvsDocInfoR",
+   "org": "기후에너지환경부",
+   "revision": "타법개정",
+   "lawType": "대통령령",
+   "number": "제36804호",
+   "promulgated": "2026-11-10",
+   "effective": "2026-11-10",
+   "tags": [
+    "시행"
+   ],
+   "firstSeen": "2026-11-10"
   },
   {
    "title": "대기환경보전법",
@@ -96,13 +195,11 @@ window.LAW_DATA = {
    "firstSeen": "2026-11-05"
   }
  ],
- "stale": [
-  "laws"
- ],
+ "rules": [],
  "newCount": {
   "legislative": 0,
-  "administrative": 1,
-  "laws": 0,
+  "administrative": 0,
+  "laws": 9,
   "rules": 0
  }
 };
