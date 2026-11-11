@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-10",
- "from": "2026-11-07",
- "to": "2026-11-10",
+ "updated": "2026-11-11",
+ "from": "2026-11-08",
+ "to": "2026-11-11",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -11,6 +11,26 @@ window.LAW_DATA = {
  ],
  "legislative": [],
  "administrative": [
+  {
+   "title": "식품용기 사용 재생원료 일부개정고시안 행정예고",
+   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47694",
+   "ruleType": "고시",
+   "org": "기후에너지환경부",
+   "notice": "제2026-1009호",
+   "period": "2026. 11. 11. ~ 2026. 11. 30.",
+   "start": "2026-11-11",
+   "firstSeen": "2026-11-11"
+  },
+  {
+   "title": "2027년 바이오가스 생산목표율 고시 제정안 행정예고",
+   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47692",
+   "ruleType": "고시",
+   "org": "기후에너지환경부",
+   "notice": "제2026-1012호",
+   "period": "2026. 11. 11. ~ 2026. 12. 1.",
+   "start": "2026-11-11",
+   "firstSeen": "2026-11-11"
+  },
   {
    "title": "통합관리사업장의 배출 및 방지시설 운영·관리와 허가조건 이행에 대한 전산 기록·보존에 관한 고시 개정안 행정예고",
    "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47680",
@@ -195,11 +215,20 @@ window.LAW_DATA = {
    "firstSeen": "2026-11-05"
   }
  ],
- "rules": [],
+ "rules": [
+  {
+   "title": "석면해체작업감리인 평가 등에 관한 고시",
+   "date": "2026-11-09",
+   "number": "2026-280",
+   "org": "기후에너지환경부",
+   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1953",
+   "firstSeen": "2026-11-11"
+  }
+ ],
  "newCount": {
   "legislative": 0,
-  "administrative": 0,
-  "laws": 9,
-  "rules": 0
+  "administrative": 2,
+  "laws": 0,
+  "rules": 1
  }
 };
