@@ -27,6 +27,7 @@ h2 small{font-size:13px;font-weight:400;color:var(--muted)}
 .tbl th{background:var(--surface2);font-weight:700;padding:12px 10px;border:1px solid var(--line);white-space:nowrap}
 .tbl td{padding:11px 10px;border:1px solid var(--line);text-align:center;vertical-align:middle;line-height:1.5}
 .tbl td.t{text-align:left}.tbl td:not(.t){white-space:nowrap}
+.tbl td .orgs{white-space:normal;font-size:12px;color:var(--muted);max-width:180px;margin:2px auto 0}.tbl td .orgs summary{cursor:pointer;color:var(--brand);font-weight:700;list-style:none}.tbl td .orgs summary::-webkit-details-marker{display:none}.tbl td .orgs summary::after{content:' ▾'}.tbl td .orgs[open] summary::after{content:' ▴'}.tbl td .orgs[open]{padding-top:2px;line-height:1.5;word-break:keep-all}
 .tbl td.t a{text-decoration:none;font-weight:600}.tbl td.t a:hover{text-decoration:underline}
 .tbl td.no{width:52px;color:var(--muted)}
 .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--tag);color:var(--brand);margin:1px 2px;white-space:nowrap}
@@ -88,6 +89,15 @@ h2 small{font-size:13px;font-weight:400;color:var(--muted)}
 <script>
 const D = window.LAW_DATA || {};
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// 소관부처가 여럿이면 기후에너지환경부를 먼저 보이고 나머지는 '외 N개 부처'로 접어 둡니다(표가 옆으로 늘어나지 않게)
+const orgCell = o => {
+  const list = String(o||'').split(/\s*,\s*/).filter(Boolean);
+  if(!list.length) return '-';
+  const main = list.includes('기후에너지환경부') ? '기후에너지환경부' : list[0];
+  const rest = list.filter(x => x !== main);
+  if(rest.length <= 1) return [main, ...rest].map(esc).join('<br>');
+  return `${esc(main)}<details class="orgs"><summary>외 ${rest.length}개 부처</summary>${rest.map(esc).join(', ')}</details>`;
+};
 const dot = d => d ? String(d).replace(/^(\d{4})-0?(\d+)-0?(\d+)$/, '$1. $2. $3.') : '-';
 const link = (t, u) => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>` : esc(t);
 const isNew = x => x.firstSeen && x.firstSeen === D.updated;
@@ -96,16 +106,16 @@ const range = `최근 3일 · ${dot(D.from)} ~ ${dot(D.to)}`;
 const SECTIONS = [
   {id:'leg', key:'legislative', title:'입법예고 현황', sub:range,
    cols:['No','법령 제명','소관부처','법령분야','입법의견 접수기간','남은기간'],
-   row:(x,i)=>[i, link(x.title,x.url)+NEW(x)+(x.kind?` <span class="tag">${esc(x.kind)}</span>`:''), `${esc(x.org)}${x.lawType?`<span class="sub">(${esc(x.lawType)})</span>`:''}`, esc(x.field), esc(x.period), esc(x.remain)]},
+   row:(x,i)=>[i, link(x.title,x.url)+NEW(x)+(x.kind?` <span class="tag">${esc(x.kind)}</span>`:''), `${orgCell(x.org)}${x.lawType?`<span class="sub">(${esc(x.lawType)})</span>`:''}`, esc(x.field), esc(x.period), esc(x.remain)]},
   {id:'adm', key:'administrative', title:'행정예고 현황', sub:range,
    cols:['No','행정예고명','행정규칙','기관(공고번호)','입법의견 접수기간'],
-   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), esc(x.ruleType), `${esc(x.org)}${x.notice?`<span class="sub">(${esc(x.notice)})</span>`:''}`, esc(x.period)]},
+   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), esc(x.ruleType), `${orgCell(x.org)}${x.notice?`<span class="sub">(${esc(x.notice)})</span>`:''}`, esc(x.period)]},
   {id:'law', key:'laws', title:'법령 현황: 공포 · 시행 · 예정', sub:`${range} · 시행예정은 앞으로 ${D.ahead||7}일`,
    cols:['No','법령명','구분','소관부처','제정·개정구분','법령종류','공포일자','시행일자'],
-   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), (x.tags||[]).map(t=>`<span class="tag${t==='시행예정'?' soon':''}">${esc(t)}</span>`).join(''), esc(x.org), esc(x.revision), esc(x.lawType), dot(x.promulgated), dot(x.effective)]},
+   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), (x.tags||[]).map(t=>`<span class="tag${t==='시행예정'?' soon':''}">${esc(t)}</span>`).join(''), orgCell(x.org), esc(x.revision), esc(x.lawType), dot(x.promulgated), dot(x.effective)]},
   {id:'rule', key:'rules', title:'법령 현황: 고시 · 훈령 · 예규', sub:range,
    cols:['No','행정규칙명','발령·등록일자','발령번호','소관부서명'],
-   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), dot(x.date), esc(x.number), esc(x.org)]}
+   row:(x,i)=>[i, link(x.title,x.url)+NEW(x), dot(x.date), esc(x.number), orgCell(x.org)]}
 ];
 document.getElementById('jump').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${esc(s.title.replace('법령 현황: ',''))}<span>${(D[s.key]||[]).length}</span>${(D[s.key]||[]).some(isNew)?' <b class="tag new">NEW</b>':''}</a>`).join('');
 document.getElementById('sections').innerHTML = SECTIONS.map(s=>{
