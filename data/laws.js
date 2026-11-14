@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-13",
- "from": "2026-11-10",
- "to": "2026-11-13",
+ "updated": "2026-11-14",
+ "from": "2026-11-11",
+ "to": "2026-11-14",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,7 +19,7 @@ window.LAW_DATA = {
    "field": "환경",
    "period": "2026. 11. 11. ~2026. 11. 18.",
    "start": "2026-11-11",
-   "remain": "5일",
+   "remain": "4일",
    "firstSeen": "2026-11-12"
   }
  ],
@@ -356,8 +356,8 @@ window.LAW_DATA = {
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 1,
+  "administrative": 0,
   "laws": 0,
-  "rules": 3
+  "rules": 0
  }
 };
