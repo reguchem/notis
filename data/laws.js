@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-20",
- "from": "2026-11-17",
- "to": "2026-11-20",
+ "updated": "2026-11-21",
+ "from": "2026-11-18",
+ "to": "2026-11-21",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -65,50 +65,18 @@ window.LAW_DATA = {
  "laws": [],
  "rules": [
   {
-   "title": "전원개발사업(홍천양수발전소 1,2호기 건설사업) 실시계획 변경",
-   "date": "2026-11-17",
-   "number": "2026-286",
-   "org": "기후에너지환경부",
+   "title": "석면해체작업감리인 기준",
+   "date": "2026-11-20",
+   "number": "2026-294,2026-74,2026-638",
+   "org": "기후에너지환경부,고용노동부,국토교통부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1957",
    "firstSeen": "2026-11-20"
-  },
-  {
-   "title": "수열에너지의 범위 지정에 관한 고시",
-   "date": "2026-11-17",
-   "number": "2026-290",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1956",
-   "firstSeen": "2026-11-20"
-  },
-  {
-   "title": "전원개발사업 실시계획 승인(제주 청정에너지 복합발전소 건설사업)",
-   "date": "2026-11-17",
-   "number": "2026-285",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1955",
-   "firstSeen": "2026-11-19"
-  },
-  {
-   "title": "재활용가능자원의 분리수거 등에 관한 지침",
-   "date": "2026-11-17",
-   "number": "63",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1954",
-   "firstSeen": "2026-11-18"
-  },
-  {
-   "title": "환경성적표지 작성지침",
-   "date": "2026-11-17",
-   "number": "2026-289",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1953",
-   "firstSeen": "2026-11-18"
   }
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 3,
+  "administrative": 0,
   "laws": 0,
-  "rules": 2
+  "rules": 0
  }
 };
