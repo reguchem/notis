@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-24",
- "from": "2026-11-21",
- "to": "2026-11-24",
+ "updated": "2026-11-25",
+ "from": "2026-11-22",
+ "to": "2026-11-25",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,7 +19,7 @@ window.LAW_DATA = {
    "field": "수자원ㆍ토지ㆍ건설업",
    "period": "2026. 11. 24. ~2026. 12. 11.",
    "start": "2026-11-24",
-   "remain": "17일",
+   "remain": "16일",
    "firstSeen": "2026-11-24"
   }
  ],
@@ -57,9 +57,9 @@ window.LAW_DATA = {
   }
  ],
  "newCount": {
-  "legislative": 1,
+  "legislative": 0,
   "administrative": 0,
   "laws": 0,
-  "rules": 1
+  "rules": 0
  }
 };
