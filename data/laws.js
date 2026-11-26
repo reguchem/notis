@@ -1,8 +1,8 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-25",
- "from": "2026-11-22",
- "to": "2026-11-25",
+ "updated": "2026-11-26",
+ "from": "2026-11-23",
+ "to": "2026-11-26",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
@@ -19,11 +19,21 @@ window.LAW_DATA = {
    "field": "수자원ㆍ토지ㆍ건설업",
    "period": "2026. 11. 24. ~2026. 12. 11.",
    "start": "2026-11-24",
-   "remain": "16일",
+   "remain": "15일",
    "firstSeen": "2026-11-24"
   }
  ],
  "administrative": [
+  {
+   "title": "배출권 유상할당 및 시장안정화 조치를 위한 배출권 추가할당에 관한 규정 일부개정고시안 행정예고",
+   "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47800",
+   "ruleType": "고시",
+   "org": "기후에너지환경부",
+   "notice": "제2026-966호",
+   "period": "2026. 11. 26. ~ 2026. 12. 16.",
+   "start": "2026-11-26",
+   "firstSeen": "2026-11-26"
+  },
   {
    "title": "건설기계 원동기 인증 및 검사 방법과 절차 등에 관한 규정 일부개정고시안 행정예고",
    "url": "https://opinion.lawmaking.go.kr/gcom/admpp/47774",
@@ -58,7 +68,7 @@ window.LAW_DATA = {
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 0,
+  "administrative": 1,
   "laws": 0,
   "rules": 0
  }
