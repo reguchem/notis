@@ -1,28 +1,15 @@
 // 자동 생성 파일: tools/update_laws.py 가 매일 갱신합니다.
 window.LAW_DATA = {
- "updated": "2026-11-27",
- "from": "2026-11-24",
- "to": "2026-11-27",
+ "updated": "2026-11-28",
+ "from": "2026-11-25",
+ "to": "2026-11-28",
  "ahead": 7,
  "orgs": [
   "기후에너지환경부",
   "화학물질안전원",
   "국립환경과학원"
  ],
- "legislative": [
-  {
-   "title": "지하수법 시행령 일부개정령안 입법예고",
-   "url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/89590",
-   "kind": "일부",
-   "org": "기후에너지환경부",
-   "lawType": "대통령령",
-   "field": "수자원ㆍ토지ㆍ건설업",
-   "period": "2026. 11. 24. ~2026. 12. 11.",
-   "start": "2026-11-24",
-   "remain": "14일",
-   "firstSeen": "2026-11-24"
-  }
- ],
+ "legislative": [],
  "administrative": [
   {
    "title": "(화학물질안전원고시 제2025-9호) 일부개정안 행정예고",
@@ -54,20 +41,12 @@ window.LAW_DATA = {
    "org": "기후에너지환경부",
    "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1959",
    "firstSeen": "2026-11-27"
-  },
-  {
-   "title": "기후에너지환경부 자체규제심사위원회 운영규정",
-   "date": "2026-11-24",
-   "number": "66",
-   "org": "기후에너지환경부",
-   "url": "https://www.mcee.go.kr/home/web/law/read.do?menuId=71&typeCode=admrul&condition.typeCode=admrul&lawSeq=1958",
-   "firstSeen": "2026-11-27"
   }
  ],
  "newCount": {
   "legislative": 0,
-  "administrative": 1,
+  "administrative": 0,
   "laws": 0,
-  "rules": 2
+  "rules": 0
  }
 };
